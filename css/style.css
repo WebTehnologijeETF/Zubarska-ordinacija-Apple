@@ -1,0 +1,731 @@
+
+/*Za pristup css-u odredjene stranice pretraziti (ctrl + F): 
+POCETNA ( Block1 , Block2, Block3, Block4 ) 
+O NAMA  
+KONTAKT 
+NOVOSTI 
+USLUGE
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Dosis&subset=latin,latin-ext);
+
+* {
+/*    padding: 0;*/
+    margin: 0;
+}
+
+body 
+{
+    background-color: white;
+    font-family: 'Dosis', sans-serif;
+}
+
+/* POCETNA */
+.header a 
+{
+    text-decoration: none;
+    color: white;
+}
+
+.header a:hover 
+{
+    color: grey;
+}
+
+.header ul li 
+{
+    display: inline-block;
+    padding: 1em 2em;
+}
+
+.content 
+{
+    width: 100%;
+}
+
+.header 
+{
+    width: 100%;
+    /*background-color: #05666c;*/
+    /*background-color: #ff745a;*/
+    
+    background-color: #ffc75a;
+    /*background-color: #5a92ff;*/
+    /*background-color: #92ff5a;*/
+    
+    color: white;
+}
+
+.headerpic 
+{
+    overflow: auto;
+    width: 100%;
+    height: 40%;
+    background: url("../img/photo1.jpg") no-repeat center center;
+    opacity: 0.7;
+    background-size: cover;
+}
+
+.logo {
+    background: url("../img/logo5.png") no-repeat;
+    width: 200px;
+    height: 200px;
+    background-size: contain;
+    position: absolute;
+    margin: 20px 0 0 -40px;
+    display: inline-block;
+}
+
+.logopic {
+    background: url("../img/apple3.png") no-repeat;
+    width: 150px;
+    height: 200px;
+    display: inline-block;
+    background-size: contain;
+    margin-left: 1em;
+}
+
+.number {
+    text-align: right;
+    padding: 0px 50px 0px 0px;
+    font-size: 23px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 200px;
+    height: 0px;
+    font-weight: 600;
+}
+
+.meni {
+    font-size: 18px;
+    text-align: right;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    /*color: #05666c;*/
+}
+
+@media only screen and (max-width: 870px) {
+    .meni {
+        font-size: 15px;
+        text-align: right;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+}
+
+@media only screen and (max-width: 720px) {
+    .meni {
+        font-size: 13px;
+        text-align: right;
+        text-transform: uppercase;
+    }
+    .header ul li {
+        display: inline-block;
+        padding: 2em 1em;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .meni {
+        font-size: 9px;
+        text-align: right;
+        text-transform: uppercase;
+    }
+   .header ul li {
+        display: inline-block;
+        padding: 2em 1em;
+    }
+    .logo {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .meni {
+        font-size: 6px;
+        text-align: right;
+        text-transform: uppercase;
+    }
+    .header ul li {
+        display: inline-block;
+        padding: 2em 1em;
+    }
+    .logo {
+        display: none;
+    }
+}
+
+.text1,
+.text2,
+.text3 {
+    text-transform: uppercase;
+    font-size: 26px;
+    background-color: #ffc75a;
+    color: white;
+    padding: 10px 0px;
+    text-align: center;
+}
+
+.block1,
+.block3,
+.block4 {
+/*    padding: 20px 0;*/
+    text-align: center;
+    color: grey;
+}
+
+/*Block1*/
+
+.why-block {
+    height: 250px;
+    width: 250px;
+    margin: 20px 2px 10px 2px;
+    /*background-color: #ffd074;*/
+    display: inline-block;
+    padding: 20px;
+    font-size: 20px;
+}
+
+.why-pic1 {
+    background: url("../img/why-pic1.png");
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.why-pic2 {
+    background: url("../img/why-pic2.png");
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.why-pic3 {
+    background: url("../img/why-pic3.png");
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.why-pic4 {
+    background: url("../img/why-pic4.png");
+    height: 70px;
+    width: 70px;
+    background-size: cover;
+    background-position: center;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}
+
+.why-head {
+    padding: 5px;
+    background-color: grey;
+    color: white;
+}
+
+/*Block2*/
+
+.nabrojeni-partneri
+{
+    width:200px;
+    margin: 0 auto;
+}
+.partners a
+{
+   text-decoration: none;
+   color:dimgray;
+   font-size:20px;
+}
+
+.partners a:hover
+{
+    color:#ffc75a;
+}
+
+
+ul.partners
+{
+    list-style-image: url("../img/linkstyle.png");
+    padding-top:10px;
+}
+
+.block2 li
+{
+    padding:3px;
+}
+
+
+/*Block 3*/
+
+.block3 .quotes-all
+{
+    display: inline-block;
+}
+
+.block3 .quote-pic
+{
+    background: url("../img/quote.png");
+    background-repeat: no-repeat;
+    height:100px;
+    width:100px;
+    background-size: contain;
+    background-position: center;
+    margin: 0 auto;
+ 
+}
+.block3 .quote
+{
+    width:250px;
+    display: inline-block;
+    text-align: justify;
+    margin:10px;
+    border-bottom: 1px solid grey;
+}
+
+.quote .name
+{
+    text-align: right;
+    margin:10px;
+    color:dimgrey;
+}
+
+/*Block4*/
+
+.block4 .doktor
+{
+    width:250px;
+    display:inline-block;
+    margin:10px 15px;
+}
+
+.block4 .doktor-slika1
+{
+    background: url("../img/doktor4.jpg");
+    width:250px;
+    height:250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin:0 auto;
+}
+
+.block4 .doktor-slika2
+{
+    background: url("../img/doktor2.jpg");
+    width:250px;
+    height:250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin:0 auto;
+}
+
+.block4 .doktor-slika3
+{
+    background: url("../img/doktor3.jpg");
+    width:250px;
+    height:250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0 auto;
+}
+
+.block4 .doktor-slika4
+{
+    background: url("../img/doktor1.jpg");
+    width:250px;
+    height:250px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin:0 auto;
+}
+
+.block4 .doktor-ime
+{
+    background-color:#ffc75a;
+    color:white;
+    padding:5px;
+}
+.doktor-opis
+{
+    text-align: justify;
+    height: 260px;
+}
+
+/*O NAMA*/
+.text-onama {
+    padding: 15px 20px;
+    text-align: center;
+    text-align: justify;
+    color:grey;
+}
+
+
+.gallery-table tr td
+{
+   display: inline-table;
+   margin: auto;
+    
+}
+
+.gallery-table
+{
+    margin: auto;
+    padding:0 40px;
+}
+
+.gallery-background
+{
+    background-color: darkgrey;
+}
+
+.gallery-table .naslov
+{
+    color:white;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+
+.pic1 {
+    background: url("../img/photo5.jpg") no-repeat;
+    height: 250px;
+    width: 280px;
+    background-size: contain;
+/*    display: inline-block;*/
+    
+}
+
+.pic2 {
+    background: url("../img/photo3.jpg") no-repeat;
+    height: 250px;
+    width: 280px;
+    background-size: contain;
+/*    display: inline-block;*/
+}
+
+.pic3 {
+    background: url("../img/photo4.jpg") no-repeat;
+    height: 250px;
+    width: 280px;
+    background-size: contain;
+/*    display: inline-block;*/
+}
+
+.pic4 {
+    background: url("../img/photo2.jpg") no-repeat;
+    height: 250px;
+    width: 280px;
+    background-size: contain;
+/*    display: inline-block;*/
+}
+
+/*KONTAKT*/
+
+.kontakt-forma 
+{
+    padding: 50px;
+    width:400px;
+    margin: 0 auto;
+    color:dimgrey;
+}
+
+label
+{
+    margin:0px;
+}
+
+.kontakt-forma .name, .kontakt-forma .email, .kontakt-forma .godiste {
+    width: 100%;
+    height: 30px;
+    margin:10px 0;
+    padding:3px 6px;
+}
+
+.kontakt-forma .message 
+{
+    width:100%;
+    height: 150px;
+    max-width:100%;
+    min-width:100%;
+    min-height:100px;
+    margin:10px 0;
+    padding:3px 6px;
+}
+
+.kontakt-forma .send 
+{
+    margin:30px 0;
+    width:100px;
+    height:40px;
+    float:right;
+    background-color: #ffc75a;
+    border: 1px solid #ffc75a;
+    color:white;
+    font-size:16px;
+}
+
+.kontakt-forma .send:hover
+{
+    color:grey;
+    background-color: white;
+    border: 1px solid #ffc75a;
+}
+
+.kontakt-forma .name:hover, .kontakt-forma .email:hover, .kontakt-forma .message:hover, .kontakt-forma .godiste:hover
+{
+    border: 1px solid #ffc75a;
+}
+
+/*USLUGE*/
+
+.tabela-usluga
+{
+    background-color: #ffc75a;
+    color:white;
+    width:100%;
+    font-size:18px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.tablea-usluga .naslov
+{
+    background-color: white;
+    color:grey;
+    text-align: center;
+    font-size:20px;
+    padding:10px;
+}
+
+.usluge-opis tr td
+{
+    padding:5px 50px;
+}
+
+.tabela-usluga tr td
+{
+/*    border:1px solid black;*/
+    padding:5px;
+}
+
+
+.usluge-opis .naziv
+{
+    background-color: #ffc75a;
+    text-transform: uppercase;
+    color:white;
+    font-size:18px;
+}
+
+.usluge-opis .podnaslov
+{
+    text-transform: uppercase;
+    border-bottom: 1px solid grey;
+    color:grey;
+}
+
+.usluge-opis .gallery 
+{
+    border-bottom: 1px solid grey;
+}
+
+/*NOVOSTI*/
+
+.content .content-naslov
+{
+    background-color: darkgrey;
+    font-size:30px;
+    color:white;
+    padding:10px;
+    text-transform: uppercase;
+    text-align:center;
+}
+.novost .naslov
+{
+    background-color: #ffc75a;
+    font-size:20px;
+    color:white;
+    padding:10px;
+    text-transform: uppercase;
+    text-align:center;
+}
+
+.naslov .datum
+{
+   float:right;
+}
+
+.datum .date-icon
+{
+    font-size:25px;
+    float:left;
+    margin:-4px 5px 0px 0px;
+}
+
+
+.naslov .autor
+{
+   float:left;
+}
+
+.novost .tekst
+{
+    padding:20px;
+    text-align: justify;
+    color:grey;
+}
+
+.novost .tekst .picture1
+{
+    height:300px;
+    width:600px;
+    background: url("../img/piezo.jpg") no-repeat;
+    background-size: contain;
+    margin:0 auto;
+}
+
+.novost .tekst .picture2
+{
+    height:300px;
+    width:600px;
+    background: url("../img/truklear.jpg") no-repeat;
+    background-size: contain;
+    margin:0 auto;
+}
+
+.novost .tekst .picture3
+{
+    height:300px;
+    width:600px;
+    background: url("../img/incognito.jpg") no-repeat;
+    background-size: contain;
+    margin:0 auto;
+}
+
+
+.novost .tekst .detaljnije
+{
+    background-color: darkgrey;
+    padding:15px;
+    margin:15px 45px;
+    float:right;
+    text-align: right;
+    color:white;
+    overflow: auto;
+}
+
+.novost .border-bottom
+{
+    width:100%;
+    border-bottom: 1px solid grey;
+    float:right; 
+}
+
+@media only screen and (max-width: 650px) 
+{
+    .novost .tekst .picture1, 
+    .novost .tekst .picture2,
+    .novost .tekst .picture3
+    {
+        height:200px;
+        width:400px;
+    }
+}
+
+@media only screen and (max-width: 450px) 
+{
+    .novost .tekst .picture1, 
+    .novost .tekst .picture2,
+    .novost .tekst .picture3
+    {
+        height:150px;
+        width:200px;
+    }
+}
+
+/*GALERIJA USLUGE*/
+.gallery .picture1
+{
+    background: url("../img/usluge/tabela1.jpg") no-repeat;
+    height:160px;
+    width:200px;
+    background-size:contain;
+    display: inline-block;
+}
+
+.gallery .picture2
+{
+    background: url("../img/usluge/tabela12.jpg") no-repeat;
+    height:160px;
+    width:200px;
+    background-size:contain;
+    display: inline-block;
+}
+
+.gallery .picture3
+{
+    background: url("../img/usluge/tabela2.jpg") no-repeat;
+    height:160px;
+    width:220px;
+    background-size:contain;
+    display: inline-block;
+}
+
+.gallery .picture4
+{
+    background: url("../img/usluge/tabela21.jpg") no-repeat;
+    height:160px;
+    width:190px;
+    background-size:contain;
+    display: inline-block;
+    margin-left:5px;
+    margin-left:5px;
+}
+
+.gallery .picture5
+{
+    background: url("../img/usluge/tabela3.jpg") no-repeat;
+    height:150px;
+    width:250px;
+    background-size:contain;
+    display: inline-block;
+}
+
+.gallery .picture6
+{
+    background: url("../img/usluge/tabela31.png") no-repeat;
+    height:160px;
+    width:200px;
+    background-size:contain;
+    display: inline-block;
+    margin-left:5px;
+}
+
+.gallery .picture7
+{
+    background: url("../img/usluge/tabela41.jpg") no-repeat;
+    height:160px;
+    width:230px;
+    background-size:contain;
+    display: inline-block;
+}
+
+.gallery .picture8
+{
+    background: url("../img/usluge/tabela4.png") no-repeat;
+    height:160px;
+    width:200px;
+    background-size:contain;
+    display: inline-block;
+    margin-left:5px;
+}
+
+
+
