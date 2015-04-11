@@ -1,8 +1,9 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Ordinacija</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/kontaktvalidacija.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head>
 <body>
@@ -13,6 +14,7 @@
 		<div class="logo"></div>
 		<ul class="meni">
 			<li><a href="index.html">Početna</a></li>
+			<li><a href="novosti.html">Novosti</a></li>
 			<li><a href="o_nama.html">O nama</a></li>
 			<li><a href="usluge.html">Usluge</a></li>
 			<li><a href="kontakt.html">Kontakt</a></li>
@@ -26,18 +28,29 @@
                 Kontakt
             </div>
         <br>
-		<form class="kontakt-forma">
+		<form class="kontakt-forma"  action="" method="GET">
 			<label >Ime i prezime:</label><br>
-			<input class="name" type="text"><br>
+			<input class="name" type="text" required><br>
+            <div class="greskaime">*Obavezno polje za popunjavanje imena</div>
+            <br>
 			<label>Email:</label><br>
-			<input class="email" type="text"><br>
+			<input class="email" type="text" required><br>	
+            <div class="greskaemail">*Obavezno polje za popunjavanje email-a</div>	
+            <br>
+            <label>Telefon:</label><br>
+			<input class="telefon" type="text" required><br>
+            <br>
             <label>Godiste:</label><br>
 <input type="number" name="quantity" min="1960" max="2000" class="godiste"><br>
+            <br>
             <label>Hitno:</label><br>
             <input type="range" name="points" min="0" max="10"><br>
+            <br>
 			<label>Poruka:</label><br>
-            <textarea class="message"></textarea><br>
+            <textarea class="message" required></textarea><br>
+            <br>
 			<input class="send" type="submit" value="Pošalji">
+            <div class="greskaporuka">*Obavezno polje za popunjavanje poruke</div>
 		</form>
 	</div>
 	<div class="footer"></div>

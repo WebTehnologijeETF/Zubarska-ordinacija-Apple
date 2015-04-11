@@ -1,9 +1,10 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Ordinacija</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="js/opadajucimeni.js"></script>
 </head>
 <body>
 	<div class="header">
@@ -12,11 +13,20 @@
 		<div class="logopic"></div>
 		<div class="logo"></div>
 		<ul class="meni">
-			<li><a href="index.html">Početna</a></li>
-			<li><a href="novosti.html">Novosti</a></li>
-			<li><a href="o_nama.html">O nama</a></li>
-			<li><a href="usluge.html">Usluge</a></li>
-			<li><a href="kontakt.html">Kontakt</a></li>
+			<li class="li-1"><a href="index.html">Početna</a></li>
+			<li class="li-1"><a href="novosti.html">Novosti</a></li>
+			<li class="li-1"><a href="o_nama.html">O nama</a></li>
+			<li class="li-1" class="usluge-meni2" onmouseenter="novosti(true)" onmouseleave="novosti(false)">
+                <a href="usluge.html">Usluge</a>
+                <ul id="usluge-meni" class="usluge-zatvoreno">
+                    <li class="li-2"><a href="" onclick="return false;">Implatati</a></li>
+                    <li class="li-2"><a href="" onclick="return false;">Izbjeljivanje zubi</a></li>
+                    <li class="li-2"><a href="" onclick="return false;">Ispuni i liječenja</a></li>
+                    <li class="li-2"><a href="" onclick="return false;">Navlake i mostovi</a></li>
+                </ul>
+                
+            </li>
+			<li class="li-1"><a href="kontakt.html">Kontakt</a></li>
 <!--			<li><a href="lokacija.html">Lokacija</a></li>-->
 		</ul>
 		<div class="headerpic"></div>
@@ -142,5 +152,9 @@ Konstantno usavršava svoja znanja kroz brojne domaće i strane kurseve i predav
 		</div>
 	</div>
 	<div class="footer"></div>
+    
+   
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+ 
 </body>
 </html>
