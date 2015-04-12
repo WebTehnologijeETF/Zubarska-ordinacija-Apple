@@ -13,7 +13,7 @@
 		<div class="logopic"></div>
 		<div class="logo"></div>
 		<ul class="meni">
-            <li class="li-1" class="usluge-meni1" onmouseenter="novosti(true,1)" onmouseleave="novosti(false,1)">
+            <li class="li-1" onmouseover="novosti(true,1)" onmouseout="novosti(false,1)">
 			     <a href="index.html">Početna</a>
                 <ul id="usluge-meni1" class="usluge-zatvoreno1">
                     <li class="li-2"><a href="index.html">Zašto baš mi?</a></li>
@@ -26,7 +26,7 @@
 			<li class="li-1"><a href="novosti.html">Novosti</a></li>
 			<li class="li-1"><a href="o_nama.html">O nama</a></li>
         
-			<li class="li-1" class="usluge-meni2" onmouseenter="novosti(true,2)" onmouseleave="novosti(false,2)">
+			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">
                 <a href="usluge.html">Usluge</a>
                 <ul id="usluge-meni2" class="usluge-zatvoreno2">
                     <li class="li-2"><a href="usluge.html">Implatati</a></li>
@@ -45,17 +45,18 @@
           <div class="content-naslov">
                 Lokacija
             </div>
-    <iframe
-      width="100%"
-      height="350"
-      frameborder="0" style="border:0"
-      src="https://www.google.com/maps/embed/v1/place?key=
-    AIzaSyDFOyDPHp2p6lXcBv5IwJf_c2TgjYBkzV4
-        &q=Sarajevo,Bosnia,Kampus">
+    <iframe id="lokacija">
     </iframe>
 	</div>
 	<div class="footer"></div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  
+    
+<!--    Bilo je potrebno staviti sve ovako u funkciju da bi se izbjegao error, koji se javlja kada se link "google.com/maps..." postavi direktno kao src-->
+  <script>
+    $(document).ready(function()
+    {
+        $('#lokacija').attr("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyDFOyDPHp2p6lXcBv5IwJf_c2TgjYBkzV4 &q=Sarajevo,Bosnia,Kampus");
+    });
+    </script>
 </body>
 </html>

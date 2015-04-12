@@ -15,7 +15,7 @@
 		<div class="logopic"></div>
 		<div class="logo"></div>
 		<ul class="meni">
-            <li class="li-1" class="usluge-meni1" onmouseenter="novosti(true,1)" onmouseleave="novosti(false,1)">
+            <li class="li-1" onmouseover="novosti(true,1)" onmouseout="novosti(false,1)">
 			     <a href="index.html">Početna</a>
                  <ul id="usluge-meni1" class="usluge-zatvoreno1">
                     <li class="li-2"><a href="index.html">Zašto baš mi?</a></li>
@@ -28,7 +28,7 @@
 			<li class="li-1"><a href="novosti.html">Novosti</a></li>
 			<li class="li-1"><a href="o_nama.html">O nama</a></li>
         
-			<li class="li-1" class="usluge-meni2" onmouseenter="novosti(true,2)" onmouseleave="novosti(false,2)">
+			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">
                 <a href="usluge.html">Usluge</a>
                 <ul id="usluge-meni2" class="usluge-zatvoreno2">
                     <li class="li-2"><a href="usluge.html">Implatati</a></li>
@@ -48,30 +48,35 @@
                 Kontakt
             </div>
         <br>
-		<form class="kontakt-forma"  action="" method="GET">
-			<label >Ime i prezime:</label><br>
-			<input class="name" type="text" required><br>
-            <div class="greskaime">*Obavezno polje za popunjavanje imena</div>
+<!--         pattern="\b([a-zA-Z]+)\b(\s\b([a-zA-Z]+)\b)*" oninvalid="setCustomValidity('Za ime i prezime je dozvoljen unos slova!')" oninput="setCustomValidity('')"-->
+		<form class="kontakt-forma"  action="http://www.google.com" method="GET">
+			<label class="zvjezdica">* </label><label>Ime i prezime:</label><br>
+			<input class="name" size=25 maxlength=25 type="text" name="ime" required><br>
+            <div class="greskaime"></div>
             <br>
-			<label>Email:</label><br>
-			<input class="email" type="text" required><br>	
-            <div class="greskaemail">*Obavezno polje za popunjavanje email-a</div>	
+			<label class="zvjezdica">* </label><label>Email:</label><br>
+			<input class="email" type="email" onChange="enableUnosPoruke()" required><br>	
+            <div class="greskaemail"></div>	
             <br>
-            <label>Telefon:</label><br>
+            <label class="zvjezdica">* </label><label>Telefon:</label><br>
 			<input class="telefon" type="text" required><br>
+            <div class="greskatelefon"></div>
             <br>
             <label>Godiste:</label><br>
-<input type="number" name="quantity" min="1960" max="2000" class="godiste"><br>
+            <input type="number" name="quantity" min="1960" max="2000" class="godiste"><br>
             <br>
             <label>Hitno:</label><br>
             <input type="range" name="points" min="0" max="10"><br>
             <br>
-			<label>Poruka:</label><br>
-            <textarea class="message" required></textarea><br>
+			<label class="zvjezdica">* </label><label>Poruka:</label><br>
+            <textarea class="message" disabled="disabled" required></textarea>
+            <div class="greskaporuka"></div>
             <br>
-			<input class="send" type="submit" value="Pošalji">
-            <div class="greskaporuka">*Obavezno polje za popunjavanje poruke</div>
+            <br>
+			<input class="send" type="button" value="Pošalji" onclick="validate()">
+             <div><label class="zvjezdica">* </label> ~ Obavezno polje za popunjavanje.</div>
 		</form>
+         
 	</div>
 	<div class="footer"></div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

@@ -527,6 +527,7 @@ label
 }
 
 /*Validacija*/
+/*
 .greskaime
 {
     display: none;
@@ -545,6 +546,12 @@ label
 .greskaporuka
 {
     display: none;
+}
+*/
+
+.zvjezdica
+{
+    color:red;
 }
 
 /*USLUGE*/
@@ -789,6 +796,14 @@ label
     background-size:contain;
     display: inline-block;
     margin-left:5px;
+}
+
+
+#lokacija
+{
+    width:100%;
+    height:350px;
+    border:0;
 }
 
 
