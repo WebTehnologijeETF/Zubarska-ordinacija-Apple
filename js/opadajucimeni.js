@@ -1,15 +1,15 @@
-function novosti(variable)
+function novosti(variable, broj)
 {
-    var uslugeMeni = $("#usluge-meni");
-  
-    if(variable && uslugeMeni.hasClass('usluge-zatvoreno'))
+    var uslugeMeni = $("#usluge-meni" + broj);
+    
+    if(variable && uslugeMeni.hasClass('usluge-zatvoreno'+broj))
     {
-        uslugeMeni.removeClass('usluge-zatvoreno');
-        uslugeMeni.addClass('usluge-otvoreno');
+        uslugeMeni.removeClass('usluge-zatvoreno'+broj);
+        uslugeMeni.addClass('usluge-otvoreno'+broj);
     }
     else
     {
-        uslugeMeni.removeClass('usluge-otvoreno');
-        uslugeMeni.addClass('usluge-zatvoreno');
+        uslugeMeni.removeClass('usluge-otvoreno'+broj);
+        uslugeMeni.addClass('usluge-zatvoreno'+broj);
     }
 }

@@ -5,34 +5,44 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="js/opadajucimeni.js"></script>
+    <script src="js/pomjeriscroll.js"></script>
 </head>
 <body>
 	<div class="header">
-		
 		<div class="number">+387 33 555 555</div>
 		<div class="logopic"></div>
 		<div class="logo"></div>
 		<ul class="meni">
-			<li class="li-1"><a href="index.html">Početna</a></li>
+            <li class="li-1" class="usluge-meni1" onmouseenter="novosti(true,1)" onmouseleave="novosti(false,1)">
+			     <a href="index.html">Početna</a>
+                <ul id="usluge-meni1" class="usluge-zatvoreno1">
+                    <li class="li-2"><a href="" onclick="pomjeriscroll(table1); return false;">Zašto baš mi?</a></li>
+                    <li class="li-2"><a href="" onclick="pomjeriscroll(table2); return false;">Naši partneri</a></li>
+                    <li class="li-2"><a href="" onclick="pomjeriscroll(table3); return false;">Pacijenti o nama</a></li>
+                    <li class="li-2"><a href="" onclick="pomjeriscroll(table4); return false;">Naši doktori</a></li>
+                </ul>
+            </li>
+            
 			<li class="li-1"><a href="novosti.html">Novosti</a></li>
 			<li class="li-1"><a href="o_nama.html">O nama</a></li>
-			<li class="li-1" class="usluge-meni2" onmouseenter="novosti(true)" onmouseleave="novosti(false)">
+        
+			<li class="li-1" class="usluge-meni2" onmouseenter="novosti(true,2)" onmouseleave="novosti(false,2)">
                 <a href="usluge.html">Usluge</a>
-                <ul id="usluge-meni" class="usluge-zatvoreno">
-                    <li class="li-2"><a href="" onclick="return false;">Implatati</a></li>
-                    <li class="li-2"><a href="" onclick="return false;">Izbjeljivanje zubi</a></li>
-                    <li class="li-2"><a href="" onclick="return false;">Ispuni i liječenja</a></li>
-                    <li class="li-2"><a href="" onclick="return false;">Navlake i mostovi</a></li>
+                <ul id="usluge-meni2" class="usluge-zatvoreno2">
+                    <li class="li-2"><a href="usluge.html">Implatati</a></li>
+                    <li class="li-2"><a href="usluge.html">Izbjeljivanje zubi</a></li>
+                    <li class="li-2"><a href="usluge.html">Ispuni i liječenja</a></li>
+                    <li class="li-2"><a href="usluge.html">Navlake i mostovi</a></li>
                 </ul>
-                
             </li>
 			<li class="li-1"><a href="kontakt.html">Kontakt</a></li>
-<!--			<li><a href="lokacija.html">Lokacija</a></li>-->
+			<li class="li-1"><a href="lokacija.html">Lokacija</a></li>
 		</ul>
 		<div class="headerpic"></div>
 	</div>
 
 	<div class="content">
+        <div id="table1"></div>
 		<div class="block1">
 			<div class="text1">Zašto baš mi?</div>
 			<div>
@@ -59,7 +69,7 @@
 												
 			</div>
 		</div>
-        
+        <div id="table2"></div>
 		<div class="block2">
 			<div class="text2">Naši partneri su:</div>
 			<div class="nabrojeni-partneri">
@@ -76,6 +86,8 @@
             </div>
 		</div>
         
+        
+        <div id="table3"></div>
 		<div class="block3">
 			<div class="text2">Pacijenti o nama</div>
 			<div>
@@ -113,6 +125,7 @@
 		</div>
         
 <!--        BLOK-->
+        <div id="table4"></div>
 		<div class="block4">
 			<div class="text2">Ko su naši doktori?</div>
 			<div>
@@ -152,8 +165,6 @@ Konstantno usavršava svoja znanja kroz brojne domaće i strane kurseve i predav
 		</div>
 	</div>
 	<div class="footer"></div>
-    
-   
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
  
 </body>
