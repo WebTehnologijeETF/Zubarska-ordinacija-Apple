@@ -54,7 +54,8 @@ function validate()
     
     //Validacija broja
     // Sa regexom
-    niz = regexIme.exec(imePrezime.value);
+    niz = regexTelefon.exec(telefon.value);
+    console.log(niz);
     var greska3 = document.getElementsByClassName('greskatelefon')[0];
     if(telefon.value == "null" || telefon.value == "")
     {
