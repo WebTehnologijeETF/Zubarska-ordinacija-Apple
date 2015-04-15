@@ -4,10 +4,9 @@
 // u main-u
 function pomjeriscroll(varijabla)
 {
-   console.log(document.querySelector('html, body').scrollTop);
-
-   var scrollTo =  document.getElementById(varijabla.id).offsetTop;
-    
-    document.querySelector('html, body').scrollTop = scrollTo;
+ 
+   var scrollTo =  document.getElementById(varijabla.id).offsetTop; // firefox
+    document.querySelector('html, body').scrollTop = scrollTo; // chrome
+    document.body.scrollTop = scrollTo;
 
 }
