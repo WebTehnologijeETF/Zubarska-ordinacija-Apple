@@ -18,10 +18,10 @@
             <li class="li-1" onmouseover="novosti(true,1)" onmouseout="novosti(false,1)">
 			     <a href="index.html">Početna</a>
                  <ul id="usluge-meni1" class="usluge-zatvoreno1">
-                    <li class="li-2"><a href="index.html">Zašto baš mi?</a></li>
-                    <li class="li-2"><a href="index.html">Naši partneri</a></li>
-                    <li class="li-2"><a href="index.html">Pacijenti o nama</a></li>
-                    <li class="li-2"><a href="index.html">Naši doktori</a></li>
+                    <li class="li-2-a"><a href="index.html">Zašto baš mi?</a></li>
+                    <li class="li-2-b"><a href="index.html">Naši partneri</a></li>
+                    <li class="li-2-c"><a href="index.html">Pacijenti o nama</a></li>
+                    <li class="li-2-d"><a href="index.html">Naši doktori</a></li>
                 </ul>
             </li>
             
@@ -31,10 +31,10 @@
 			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">
                 <a href="usluge.html">Usluge</a>
                 <ul id="usluge-meni2" class="usluge-zatvoreno2">
-                    <li class="li-2"><a href="usluge.html">Implatati</a></li>
-                    <li class="li-2"><a href="usluge.html">Izbjeljivanje zubi</a></li>
-                    <li class="li-2"><a href="usluge.html">Ispuni i liječenja</a></li>
-                    <li class="li-2"><a href="usluge.html">Navlake i mostovi</a></li>
+                    <li class="li-2-e"><a href="usluge.html">Implatati</a></li>
+                    <li class="li-2-f"><a href="usluge.html">Izbjeljivanje zubi</a></li>
+                    <li class="li-2-g"><a href="usluge.html">Ispuni i liječenja</a></li>
+                    <li class="li-2-h"><a href="usluge.html">Navlake i mostovi</a></li>
                 </ul>
             </li>
 			<li class="li-1"><a href="kontakt.html">Kontakt</a></li>
@@ -48,18 +48,19 @@
                 Kontakt
             </div>
         <br>
-<!--         pattern="\b([a-zA-Z]+)\b(\s\b([a-zA-Z]+)\b)*" oninvalid="setCustomValidity('Za ime i prezime je dozvoljen unos slova!')" oninput="setCustomValidity('')"-->
+<!--         pattern="\b([a-zA-Z]+)\b(\s\b([a-zA-Z]+)\b)*" oninvalid="setCustomValidity('Za ime i prezime je dozvoljen samo unos slova!')" oninput="setCustomValidity('')"-->
+        
 		<form class="kontakt-forma"  action="http://www.google.com" method="GET">
-			<label class="zvjezdica">* </label><label>Ime i prezime:</label><br>
-			<input class="name" size=25 maxlength=25 type="text" name="ime" required><br>
+			<label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label><div class="prikazime"></div>
+			<input class="name" size=25 maxlength=25 type="text" name="ime"><br><br>
             <div class="greskaime"></div>
             <br>
-			<label class="zvjezdica">* </label><label>Email:</label><br>
-			<input class="email" type="email" onChange="enableUnosPoruke()" required><br>	
+			<label class="zvjezdica">*&nbsp;</label><label>Email:&nbsp;</label><div class="prikazemail"></div>
+			<input class="email" type="email" onChange="enableUnosPoruke()"><br>	<br>
             <div class="greskaemail"></div>	
             <br>
-            <label class="zvjezdica">* </label><label>Telefon:</label><br>
-			<input class="telefon" type="text" required><br>
+            <label class="zvjezdica">*&nbsp;</label><label>Telefon:&nbsp;</label><div class="prikaztelefon"></div>
+            <input class="telefon" type="text"><br><br>
             <div class="greskatelefon"></div>
             <br>
             <label>Godiste:</label><br>
@@ -68,18 +69,16 @@
             <label>Hitno:</label><br>
             <input type="range" name="points" min="0" max="10"><br>
             <br>
-			<label class="zvjezdica">* </label><label>Poruka:</label><br>
-            <textarea class="message" disabled="disabled" required></textarea>
+			<label class="zvjezdica">*&nbsp;</label><label>Poruka:&nbsp;</label><div class="prikazporuka"></div>
+            <textarea class="message" disabled="disabled"></textarea><br>
             <div class="greskaporuka"></div>
             <br>
             <br>
-			<input class="send" type="button" value="Pošalji" onclick="validate()">
-             <div><label class="zvjezdica">* </label> ~ Obavezno polje za popunjavanje.</div>
+			<input class="send" type="submit" value="Pošalji" onclick="return validate();">
+             <div><label class="zvjezdica">*&nbsp;</label> ~ Obavezno polje za popunjavanje.</div>
 		</form>
          
 	</div>
 	<div class="footer"></div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  
 </body>
 </html>

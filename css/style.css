@@ -44,6 +44,17 @@ body
     padding: 1em 2em;
 }
 
+.header .li-2-a:hover, .header .li-2-b:hover,.header .li-2-c:hover, .header .li-2-d:hover, .header .li-2-e:hover, .header .li-2-f:hover, .header .li-2-g:hover
+{
+    background-color: dimgray;
+
+}
+
+.header .li-2-a a, .header .li-2-b a,.header .li-2-c a, .header .li-2-d a, .header .li-2-e a, .header .li-2-f a, .header .li-2-g a
+{
+    color:white;
+}
+
 
 .usluge-zatvoreno1, .usluge-zatvoreno2
 {
@@ -482,6 +493,7 @@ ul.partners
 label
 {
     margin:0px;
+    float:left;
 }
 
 .kontakt-forma .name, .kontakt-forma .email, .kontakt-forma .godiste, .kontakt-forma .telefon {
@@ -489,6 +501,7 @@ label
     height: 30px;
 /*    margin:15px 0;*/
     padding:3px 6px;
+    float:left;
 }
 
 .kontakt-forma .message 
@@ -527,27 +540,15 @@ label
 }
 
 /*Validacija*/
-/*
-.greskaime
-{
-    display: none;
-}
 
-.greskaemail
+.prikazime, .prikazemail, .prikaztelefon, .prikazporuka
 {
-    display: none;
+    float:left;
+    height:20px;
+    width:25px;
+    background: none;
+    background-size: contain;
 }
-
-.greskatelefon
-{
-    display: none;
-}
-
-.greskaporuka
-{
-    display: none;
-}
-*/
 
 .zvjezdica
 {

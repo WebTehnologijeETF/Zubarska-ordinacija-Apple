@@ -7,7 +7,7 @@
     <script src="js/opadajucimeni.js"></script>
     <script src="js/pomjeriscroll.js"></script>
 </head>
-<body>
+<body onLoad="pokrenimapu()">
 	<div class="header">
 		<div class="number">+387 33 555 555</div>
 		<div class="logopic"></div>
@@ -16,10 +16,10 @@
             <li class="li-1" onmouseover="novosti(true,1)" onmouseout="novosti(false,1)">
 			     <a href="index.html">Početna</a>
                 <ul id="usluge-meni1" class="usluge-zatvoreno1">
-                    <li class="li-2"><a href="index.html">Zašto baš mi?</a></li>
-                    <li class="li-2"><a href="index.html">Naši partneri</a></li>
-                    <li class="li-2"><a href="index.html">Pacijenti o nama</a></li>
-                    <li class="li-2"><a href="index.html">Naši doktori</a></li>
+                    <li class="li-2-a"><a href="index.html">Zašto baš mi?</a></li>
+                    <li class="li-2-b"><a href="index.html">Naši partneri</a></li>
+                    <li class="li-2-c"><a href="index.html">Pacijenti o nama</a></li>
+                    <li class="li-2-d"><a href="index.html">Naši doktori</a></li>
                 </ul>
             </li>
             
@@ -29,10 +29,10 @@
 			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">
                 <a href="usluge.html">Usluge</a>
                 <ul id="usluge-meni2" class="usluge-zatvoreno2">
-                    <li class="li-2"><a href="usluge.html">Implatati</a></li>
-                    <li class="li-2"><a href="usluge.html">Izbjeljivanje zubi</a></li>
-                    <li class="li-2"><a href="usluge.html">Ispuni i liječenja</a></li>
-                    <li class="li-2"><a href="usluge.html">Navlake i mostovi</a></li>
+                    <li class="li-2-e"><a href="usluge.html">Implatati</a></li>
+                    <li class="li-2-f"><a href="usluge.html">Izbjeljivanje zubi</a></li>
+                    <li class="li-2-g"><a href="usluge.html">Ispuni i liječenja</a></li>
+                    <li class="li-2-h"><a href="usluge.html">Navlake i mostovi</a></li>
                 </ul>
             </li>
 			<li class="li-1"><a href="kontakt.html">Kontakt</a></li>
@@ -49,14 +49,8 @@
     </iframe>
 	</div>
 	<div class="footer"></div>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     
 <!--    Bilo je potrebno staviti sve ovako u funkciju da bi se izbjegao error, koji se javlja kada se link "google.com/maps..." postavi direktno kao src-->
-  <script>
-    $(document).ready(function()
-    {
-        $('#lokacija').attr("src","https://www.google.com/maps/embed/v1/place?key=AIzaSyDFOyDPHp2p6lXcBv5IwJf_c2TgjYBkzV4 &q=Sarajevo,Bosnia,Kampus");
-    });
-    </script>
+
 </body>
 </html>

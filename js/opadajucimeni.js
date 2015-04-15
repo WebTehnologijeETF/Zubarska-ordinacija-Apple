@@ -1,15 +1,25 @@
 function novosti(variable, broj)
 {
-    var uslugeMeni = $("#usluge-meni" + broj);
+    var uslugeMeni = document.getElementById("usluge-meni" + broj);
     
-    if(variable && uslugeMeni.hasClass('usluge-zatvoreno'+broj))
+    var otvoreno = false;
+    if(variable && !otvoreno)
     {
-        uslugeMeni.removeClass('usluge-zatvoreno'+broj);
-        uslugeMeni.addClass('usluge-otvoreno'+broj);
+               uslugeMeni.className = 'usluge-otvoreno'+broj;
+        otvoreno= true;
     }
     else
     {
-        uslugeMeni.removeClass('usluge-otvoreno'+broj);
-        uslugeMeni.addClass('usluge-zatvoreno'+broj);
+       
+     uslugeMeni.className = 'usluge-zatvoreno'+broj;
+        otvoreno = false;
     }
+}
+
+
+function pokrenimapu()
+{
+    
+    document.getElementById('lokacija').src = "https://www.google.com/maps/embed/v1/place?key=AIzaSyDFOyDPHp2p6lXcBv5IwJf_c2TgjYBkzV4 &q=Sarajevo,Bosnia,Kampus";
+
 }
