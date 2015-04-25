@@ -2,8 +2,63 @@ var regexIme = /\b([a-zA-Z]+)\b(\s\b([a-zA-Z]+)\b)*/;
 var regexTelefon = /^\+?(\d{5})[-| ]?(\d{3})[-| ]?(\d{3})$/;
 var regexEmail = /\b[a-zA-Z0-9+_-]+@+[a-zA-Z]+([.][a-z]+)*\b$/;
 
+
+function enablemjesto()
+{
+    var opcina = document.getElementsByClassName('opcina')[0];
+    var mjesto = document.getElementsByClassName('mjesto')[0];
+    
+   if(opcina.value.length > 0)
+    {
+      mjesto.disabled = false;
+    }
+    else 
+    {
+        mjesto.disabled = true;
+    } 
+}
+
+ function provjeriajax()
+    {
+        var opcina = document.getElementsByClassName('opcina')[0];
+        var mjesto = document.getElementsByClassName('mjesto')[0];
+        var tekst = document.getElementById('tekst');
+        tekst.style.float="left";
+        
+        var ajax = new XMLHttpRequest();
+
+        ajax.onreadystatechange = function()
+            {
+                if(ajax.readyState == 4 && ajax.status == 200)
+                {
+                    var odgovor = ajax.responseText;
+                    var parsodgovor = JSON.parse(odgovor);
+                   
+                    if (parsodgovor['ok'] === "Mjesto je iz date općine")
+                    document.getElementById("tekst").innerHTML="Mjesto je iz date općine";
+                    else if (parsodgovor['greska'] === "Nepostojeće mjesto")
+                    document.getElementById("tekst").innerHTML="Nepostojeće mjesto";
+                    else
+                    document.getElementById("tekst").innerHTML = "Nepostojeće mjesto";
+                }
+            }
+        
+        ajax.open("GET", "http://zamger.etf.unsa.ba/wt/mjesto_opcina.php?opcina="+opcina.value+"&mjesto="+mjesto.value, true);
+        ajax.send();
+        }
+
+
 function validate()
 {
+   /* var opcina = document.getElementsByClassName('opcina')[0];
+    var mjesto = document.getElementsByClassName('mjesto')[0];
+    if(opcina!="" || opcina!=null)
+    AjaxValidacijaOpcina();
+    
+    AjaxValidacijaMjesto();
+    */
+    
+    
     var vratiFalse = true; // pa onda pomocu ovog vratiti false return false;!!!!!!!!
     var imePrezime = document.getElementsByClassName('name')[0];
     var email = document.getElementsByClassName('email')[0];

@@ -5,45 +5,10 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/kontaktvalidacija.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="js/opadajucimeni.js"></script>
-    <script src="js/pomjeriscroll.js"></script>
+    
 </head>
 <body>
-    
-	<div class="header">
-		<div class="number">+387 33 555 555</div>
-		<div class="logopic"></div>
-		<div class="logo"></div>
-		<ul class="meni">
-            <li class="li-1" onmouseover="novosti(true,1)" onmouseout="novosti(false,1)">
-			     <a href="index.html">Početna</a>
-                 <ul id="usluge-meni1" class="usluge-zatvoreno1">
-                    <li class="li-2-a"><a href="index.html">Zašto baš mi?</a></li>
-                    <li class="li-2-b"><a href="index.html">Naši partneri</a></li>
-                    <li class="li-2-c"><a href="index.html">Pacijenti o nama</a></li>
-                    <li class="li-2-d"><a href="index.html">Naši doktori</a></li>
-                </ul>
-            </li>
-            
-			<li class="li-1"><a href="novosti.html">Novosti</a></li>
-			<li class="li-1"><a href="o_nama.html">O nama</a></li>
-        
-			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">
-                <a href="usluge.html">Usluge</a>
-                <ul id="usluge-meni2" class="usluge-zatvoreno2">
-                    <li class="li-2-e"><a href="usluge.html">Implatati</a></li>
-                    <li class="li-2-f"><a href="usluge.html">Izbjeljivanje zubi</a></li>
-                    <li class="li-2-g"><a href="usluge.html">Ispuni i liječenja</a></li>
-                    <li class="li-2-h"><a href="usluge.html">Navlake i mostovi</a></li>
-                </ul>
-            </li>
-			<li class="li-1"><a href="kontakt.html">Kontakt</a></li>
-			<li class="li-1"><a href="lokacija.html">Lokacija</a></li>
-		</ul>
-		<div class="headerpic"></div>
-	</div>
 
-	<div class="content">
          <div class="content-naslov">
                 Kontakt
             </div>
@@ -51,6 +16,12 @@
 <!--         pattern="\b([a-zA-Z]+)\b(\s\b([a-zA-Z]+)\b)*" oninvalid="setCustomValidity('Za ime i prezime je dozvoljen samo unos slova!')" oninput="setCustomValidity('')"-->
         
 		<form class="kontakt-forma"  action="http://www.google.com" method="GET">
+           <div id="testopcina"><label>Općina: (Prvo unosimo općinu)</label><br>
+            <input type="text" class="opcina" onChange="enablemjesto()">
+            <label>Mjesto: (Pa tek onda mjesto)</label>
+            <input type="text" class="mjesto" onChange="provjeriajax()" disabled>
+            <div id="tekst"></div>
+             </div> 
 			<label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label><div class="prikazime"></div>
 			<input class="name" size=25 maxlength=25 type="text" name="ime"><br><br>
             <div class="greskaime"></div>
@@ -78,7 +49,5 @@
              <div><label class="zvjezdica">*&nbsp;</label> ~ Obavezno polje za popunjavanje.</div>
 		</form>
          
-	</div>
-	<div class="footer"></div>
 </body>
 </html>

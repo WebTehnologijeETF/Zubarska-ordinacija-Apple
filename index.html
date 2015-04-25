@@ -6,163 +6,45 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <script src="js/opadajucimeni.js"></script>
     <script src="js/pomjeriscroll.js"></script>
+    <script src="js/otvoristranicuajax.js"></script>
+    <script src="js/kontaktvalidacija.js"></script>
 </head>
-<body>
+<body onLoad="otvoriajax('pocetna')">
 	<div class="header">
 		<div class="number">+387 33 555 555</div>
 		<div class="logopic"></div>
 		<div class="logo"></div>
 		<ul class="meni">
             <li class="li-1" onmouseover="novosti(true,1)" onmouseout="novosti(false,1)">
-			     <a href="index.html">Početna</a>
+			     <a href="" onclick="otvoriajax('pocetna'); return false;">Početna</a>
                 <ul id="usluge-meni1" class="usluge-zatvoreno1">
-                    <li class="li-2-a"><a href="" onclick="pomjeriscroll(table1); return false;">Zašto baš mi?</a></li>
-                    <li class="li-2-b"><a href="" onclick="pomjeriscroll(table2); return false;">Naši partneri</a></li>
-                    <li class="li-2-c"><a href="" onclick="pomjeriscroll(table3); return false;">Pacijenti o nama</a></li>
-                    <li class="li-2-d"><a href="" onclick="pomjeriscroll(table4); return false;">Naši doktori</a></li>
+                    <li class="li-2-a"><a href="" onclick="pomjeriscroll('table1','pocetna'); return false;">Zašto baš mi?</a></li>
+                    <li class="li-2-b"><a href="" onclick="pomjeriscroll('table2','pocetna'); return false;">Naši partneri</a></li>
+                    <li class="li-2-c"><a href="" onclick="pomjeriscroll('table3','pocetna'); return false;">Pacijenti o nama</a></li>
+                    <li class="li-2-d"><a href="" onclick="pomjeriscroll('table4','pocetna'); return false;">Naši doktori</a></li>
                 </ul>
             </li>
             
-			<li class="li-1"><a href="novosti.html">Novosti</a></li>
-			<li class="li-1"><a href="o_nama.html">O nama</a></li>
+			<li class="li-1"><a href="" onclick="otvoriajax('novosti'); return false;">Novosti</a></li>
+			<li class="li-1"><a href="" onclick="otvoriajax('o_nama'); return false;">O nama</a></li>
         
 			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">
-                <a href="usluge.html">Usluge</a>
+                <a href="" onclick="otvoriajax('usluge'); return false;">Usluge</a>
                 <ul id="usluge-meni2" class="usluge-zatvoreno2">
-                    <li class="li-2-e"><a href="usluge.html">Implatati</a></li>
-                    <li class="li-2-f"><a href="usluge.html">Izbjeljivanje zubi</a></li>
-                    <li class="li-2-g"><a href="usluge.html">Ispuni i liječenja</a></li>
-                    <li class="li-2-h"><a href="usluge.html">Navlake i mostovi</a></li>
+                    <li class="li-2-e"><a href="" onclick="pomjeriscroll('tabela1','usluge'); return false;">Implatati</a></li>
+                    <li class="li-2-f"><a href="" onclick="pomjeriscroll('tabela2','usluge'); return false;">Izbjeljivanje zubi</a></li>
+                    <li class="li-2-g"><a href="" onclick="pomjeriscroll('tabela3','usluge'); return false;">Ispuni i liječenja</a></li>
+                    <li class="li-2-h"><a href="" onclick="pomjeriscroll('tabela4','usluge'); return false;">Navlake i mostovi</a></li>
                 </ul>
             </li>
-			<li class="li-1"><a href="kontakt.html">Kontakt</a></li>
-			<li class="li-1"><a href="lokacija.html">Lokacija</a></li>
+			<li class="li-1"><a href="" onclick="otvoriajax('kontakt'); return false;">Kontakt</a></li>
+			<li class="li-1"><a href="" onclick="otvoriajax('lokacija'); return false;">Lokacija</a></li>
 		</ul>
 		<div class="headerpic"></div>
 	</div>
 
 	<div class="content">
-        <div id="table1"></div>
-		<div class="block1">
-			<div class="text1">Zašto baš mi?</div>
-			<div>
-				<div class="why-block">
-					<div class="why-pic1"></div>
-					<div class="why-head">Stručnost</div>
-					<div>U ordinaciji Apple rade stručnjaci za sve vrste zubarskih intervecija a posebno za implantološke zahvate</div>
-				</div>
-				<div class="why-block">
-					<div class="why-pic2"></div>
-					<div class="why-head">50 godina iskustva</div>
-					<div>U našoj ordinaciji rade tri stomatologa iz porodice Apple sa kombinovanim stažom od preko 50 godina</div>
-				</div>
-				<div class="why-block">
-					<div class="why-pic3"></div>
-					<div class="why-head">Pouzdanost</div>
-					<div>Pacijentima nudimo pristup liječnika bilo kojem dentalnom problemu uz pomoć ljubaznog i vedrog osoblja. </div>
-				</div>
-				<div class="why-block">
-					<div class="why-pic4"></div>
-					<div class="why-head">Tehnologija</div>
-					<div>Ordinacija je opremljena suvremenom dentalnom tehnikom uz primjenu najnovijih tehnologija. </div>
-				</div>
-												
-			</div>
-		</div>
-        <div id="table2"></div>
-		<div class="block2">
-			<div class="text2">Naši partneri su:</div>
-			<div class="nabrojeni-partneri">
-                 <ul class="partners">
-                    <li><a target="_blank" href="http://www.colgate.com/app/Colgate/US/HomePage.cvsp">Colgate</a></li>
-                    <li><a href="http://www.henryschein.com/us-en/Dental/Equipment/EquipmentTechnology.aspx">Henry Schein</a></li>
-                     <li><a target="_blank" href="http://www.amerdental.com/">Amer dental</a></li>
-                     <li><a target="_blank" href="http://www.benco.com/">Benco</a></li>
-                     <li><a target="_blank" href="http://www.wrigley.com/uk/brands/airwaves.aspx">Wrigley</a></li>
-                     <li><a target="_blank" href="http://www.ada.org/en">Ada</a></li>
-                     <li><a target="_blank" href="https://www.waterpik.com/">WaterPik</a></li>
-                     <li><a target="_blank" href="https://dentalimplants.com/">Dental Implants</a></li>
-                </ul>   
-            </div>
-		</div>
-        
-        
-        <div id="table3"></div>
-		<div class="block3">
-			<div class="text2">Pacijenti o nama</div>
-			<div>
-                <div class="quotes-all">
-                    <div class="quote-pic"></div>
-                    <div class="quote">
-                        Dugo godina dolazimo svi u ordinaciju Apple – ordinacija je uvijek opremljena novinama, različitim časopisima, i-padom, postoji i Wi-Fi mreža tako da nam nije problem i ako trebamo malo pričekati. Ordinacija je moderno uređena što pridonosi ugodnoj atmosferi.
-                        <div class="name">~Maja</div>
-                    </div>
-                </div>
-                
-                <div class="quotes-all">
-                    <div class="quote-pic"></div>
-                    <div class="quote">
-                        Ono što me privlači je neformalnost i ležernost, a pri tome znam da će mi bit pružena stručna usluga koja uključuje i druge specijalnosti- oralnog kirurga, ortodonta, parodontologa. Ordinacija je moderno ugodno uređena što sve pridonosi ugodnoj atmosferi. 
-                        <div class="name">~Ana</div>
-                    </div>
-                </div>
-                
-                <div class="quotes-all">
-                    <div class="quote-pic"></div>
-                    <div class="quote">
-                        Jako mi je važno što u ordinaciji cijene moje vrijeme. Nikad dugo ne čekam, a kad me prime zaista mi se maksimalno posvete. Znam da dobivam najbolju uslugu. Važno mi je da u slučaju hitnosti uvijek mogu računati na to da ću biti brzo primljena- dakle dostupnost.
-                        <div class="name">~Emil</div></div>
-                </div>
-                
-                <div class="quotes-all">
-                    <div class="quote-pic"></div>
-                    <div class="quote">
-                        Ordinacija je za svaku preporuku. Uvijek vedra i ugodna atmosfera te stručno i ljubazno osoblje. Moj strah od zubara je nestao! Važna nam je stučnost doktorica, opremljenost ordinacije i praćenje noviteta. Svi su vrlo ljubazni i susretljivi. Ordinacija je za svaku preporuku!
-                        <div class="name">~Ema</div>
-                    </div>
-                </div>
-            </div>
-		</div>
-        
-<!--        BLOK-->
-        <div id="table4"></div>
-		<div class="block4">
-			<div class="text2">Ko su naši doktori?</div>
-			<div>
-                <div class="doktor">
-                    <div class="doktor-slika1"></div>
-                    <div class="doktor-ime">dr. Ediba Žugor</div>
-                    <div class="doktor-opis">Diplomirala je na Stomatološkom fakultetu u Sarajevu 2005. godine.
-Nedugo potom osniva privatnu stomatološku ordinaciju sa ciljem da svojim pacijentima pruži stomatološke usluge po najvišim svetskim standardima. Tako dolazi do saradnje sa stručnjacima različitih specijalnosti. Učestvovala u više naučnih i stručnih skupova u zemlji i inostranstvu. U sklopu stručnog usavršavanja završila je kurseve iz oblasti estetske stomatologije.
-</div>
-                </div>
-                
-                <div class="doktor">
-                    <div class="doktor-slika2"></div>
-                    <div class="doktor-ime">dr. Samir Mujić</div>
-                    <div class="doktor-opis">Diplomirao na Medicinskom fakultetu u Sarajevu 1994. godine. Diplomirao na Stomatološkom fakultetu u Sarajevu 2001. godine.
-Specijalista je maksilofacijalne hirugije od 2002. godine. Doktorsku disertaciju odbranio je 2012. godine i stekao zvanje doktora stomatoloških nauka. Član je Udruženja maksilofacijalnih hirurga Bosne, Evropskog udruženja kraniomaks. hirurga, Interna. udruženja oralnih i maksilofacijalnih hirurga.
-</div>
-                </div>
-                
-                <div class="doktor">
-                    <div class="doktor-slika3"></div>
-                    <div class="doktor-ime">dr. Ema Čel</div>
-                    <div class="doktor-opis">Diplomirala na Stomatološkom fakultetu u Sarajevu. U stomatološkoj ordinaciji ˝Apple˝ zaposlena od 2013. godine.
-U kliničkom radu se najčešće bavi endodoncijom stomatologijom a posebnu pažnju posvećuje najmladjim pacijentima.
-Konstantno usavršava svoja znanja kroz brojne domaće i strane kurseve i predavanja. Svoje polje interesovanja proširuje i na domen stomatološke protetike gde postiže zavidne rezultate i kreira lepe osmehe.
 
-</div>
-                </div>
-                
-                <div class="doktor">
-                    <div class="doktor-slika4"></div>
-                    <div class="doktor-ime">dr. Demir Gazetić</div>
-                    <div class="doktor-opis">Demir Gazeti, doktor dentalne medicine, rođen je u Sarajevu 1972. godine u obitelji stomatologa. Nakon diplome na Stomatološkom Fakultetu u Sarajevu 1998. i rada u privatnoj stomatološkoj ordinaciji, 2003. se preselio u Norvešku gdje je verificirao diplomu na Stomatološkom Fakultetu u Bergenu i radio kao stomatolog. Nakon povratka u Bosnu, znanje i iskustvo stečeno u Skandinaviji primjenjuje i u svom radu u Sarajevu.
-</div>
-                </div>
-            </div>
-		</div>
 	</div>
 	<div class="footer"></div>
 </body>
