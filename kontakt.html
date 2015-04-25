@@ -16,12 +16,15 @@
 <!--         pattern="\b([a-zA-Z]+)\b(\s\b([a-zA-Z]+)\b)*" oninvalid="setCustomValidity('Za ime i prezime je dozvoljen samo unos slova!')" oninput="setCustomValidity('')"-->
         
 		<form class="kontakt-forma"  action="http://www.google.com" method="GET">
-           <div id="testopcina"><label>Općina: (Prvo unosimo općinu)</label><br>
-            <input type="text" class="opcina" onChange="enablemjesto()">
-            <label>Mjesto: (Pa tek onda mjesto)</label>
-            <input type="text" class="mjesto" onChange="provjeriajax()" disabled>
+           <div id="testopcina"><label>Općina:</label><br>
+            <input type="text" class="opcina" onChange="enablebutton()">
+            <label>Mjesto:</label>
+            <input type="text" class="mjesto" onChange="enablebutton()">
+            <input class="send" type="button" value="Provjeri" onclick="provjeriajax()" disabled>
             <div id="tekst"></div>
-             </div> 
+            <div id="tekst2">
+            Za provjeru potrebno unijeti i općinu i mjesto.</div>
+             </div> <br><br><br><br><br>
 			<label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label><div class="prikazime"></div>
 			<input class="name" size=25 maxlength=25 type="text" name="ime"><br><br>
             <div class="greskaime"></div>

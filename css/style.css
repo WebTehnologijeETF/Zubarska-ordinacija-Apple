@@ -536,6 +536,12 @@ label
     font-size:16px;
 }
 
+.kontakt-forma .send:disabled
+{
+    background-color: grey;
+    opacity: 0.3;
+}
+
 .kontakt-forma .send:hover
 {
     color:grey;
@@ -548,6 +554,11 @@ label
     border: 1px solid #ffc75a;
 }
 
+#testopcina div
+{
+    clear:both;
+}
+
 /*Validacija*/
 
 #testopcina
@@ -558,6 +569,11 @@ label
 #tekst
 {
     color:red;
+}
+
+#tekst2
+{
+    float:left;
 }
 
 .prikazime, .prikazemail, .prikaztelefon, .prikazporuka

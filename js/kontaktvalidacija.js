@@ -3,18 +3,20 @@ var regexTelefon = /^\+?(\d{5})[-| ]?(\d{3})[-| ]?(\d{3})$/;
 var regexEmail = /\b[a-zA-Z0-9+_-]+@+[a-zA-Z]+([.][a-z]+)*\b$/;
 
 
-function enablemjesto()
+function enablebutton()
 {
     var opcina = document.getElementsByClassName('opcina')[0];
+    var button = document.getElementsByClassName('send')[0];
     var mjesto = document.getElementsByClassName('mjesto')[0];
     
-   if(opcina.value.length > 0)
+   if(opcina.value.length > 0 && mjesto.value.length > 0)
     {
-      mjesto.disabled = false;
+      button.disabled = false;
     }
     else 
     {
-        mjesto.disabled = true;
+      button.disabled = true;
+      document.getElementById("tekst").innerHTML="";
     } 
 }
 
@@ -50,14 +52,6 @@ function enablemjesto()
 
 function validate()
 {
-   /* var opcina = document.getElementsByClassName('opcina')[0];
-    var mjesto = document.getElementsByClassName('mjesto')[0];
-    if(opcina!="" || opcina!=null)
-    AjaxValidacijaOpcina();
-    
-    AjaxValidacijaMjesto();
-    */
-    
     
     var vratiFalse = true; // pa onda pomocu ovog vratiti false return false;!!!!!!!!
     var imePrezime = document.getElementsByClassName('name')[0];
