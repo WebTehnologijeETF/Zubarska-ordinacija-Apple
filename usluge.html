@@ -11,7 +11,33 @@
            <div class="content-naslov">
                 Usluge
             </div>
-		<table class="tabela-usluga">
+    
+    <form class="usluge-forma">
+        <br>
+        <div>Odaberite opciju: </div>
+        <select id="akcija" onchange="promjenaakcije()">
+        <option value = "Dodavanje">Dodavanje</option>
+        <option value = "Promjena">Promjena</option>
+        <option value = "Brisanje">Brisanje</option>
+        </select><br><br>
+        <label>Naziv: </label><br>
+        <input type="text" id="inaziv"><br>
+        <label>Cijena: </label><br>
+        <textarea id="icijena"></textarea><br>
+        <label>Opis: </label><br>
+        <textarea id="iopis"></textarea><br>
+        <label>Galerija: </label><br>
+        <input id="islika1" type="text"><br>
+        <input class="dodaj" type="button" value="Dodaj" onClick="dodajBrisiPromijeni()">
+    </form>
+       <div>Pregled dodanih usluga: <input class="ispisiusluge" type="button" value="Ostale usluge" onclick="ostaleUsluge()"></div><br><br><br>
+        <div class="ostaleusluge">
+            <table class="usluge-opis">
+                
+            </table>
+        </div>
+    
+    		<table class="tabela-usluga">
             <tr>
                 <th class="naslov" colspan="4">Usluge koje ordinacija nudi:</th>
             </tr>
@@ -22,8 +48,7 @@
                 <td><a href="" onclick="pomjeriscroll('tabela4','usluge'); return false;">Navlake i mostovi</a></td>
             </tr>            
         </table>
-        
-        
+    
         <br><br><br><br>
         <div id="tabela1"></div>
         <table class="usluge-opis">
