@@ -3,6 +3,7 @@ var regexTelefon = /^\+?(\d{5})[-| ]?(\d{3})[-| ]?(\d{3})$/;
 var regexEmail = /\b[a-zA-Z0-9+_-]+@+[a-zA-Z]+([.][a-z]+)*\b$/;
 
 
+
 function enablebutton()
 {
     var opcina = document.getElementsByClassName('opcina')[0];
@@ -53,7 +54,7 @@ function enablebutton()
 function validate()
 {
     
-    var vratiFalse = true; // pa onda pomocu ovog vratiti false return false;!!!!!!!!
+    var vratiFalse = true; 
     var imePrezime = document.getElementsByClassName('name')[0];
     var email = document.getElementsByClassName('email')[0];
     var telefon = document.getElementsByClassName('telefon')[0];

@@ -14,11 +14,37 @@ function otvoriajax(varijabla)
             else if (ajax.readyState == 4 && ajax.status == 404)
                 obj.innerHTML = "Greska: nepoznat URL";
         }
-        var s = varijabla + ".html";
+        if(varijabla=="kontakt" || varijabla=="novosti" || varijabla=="detaljnije")
+            var s = varijabla + ".php";
+        else
+             var s = varijabla + ".html";
+    
         console.log(s);
         ajax.open("GET", s, true);
         ajax.send();
     
+}
+
+function novostiajax(datum,autor,naslov,slika,tekst,det)
+{
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function() 
+        {
+            var obj = document.getElementsByClassName("content")[0];
+            if (ajax.readyState == 4 && ajax.status == 200)
+            {
+                obj.innerHTML = ajax.responseText;
+            }
+            else if (ajax.readyState == 4 && ajax.status == 404)
+                obj.innerHTML = "Greska: nepoznat URL";
+        }
+        
+        var s = "detaljnije.php?"+"det="+det+"&autor="+autor+"&datum="+datum+"&naslov="+naslov+"&slika="+slika+"&tekst="+tekst;
+
+        console.log(s);
+        ajax.open("POST", s, true);
+        ajax.send();
+
 }
 
 function vratiInputeZaDodavanje()
