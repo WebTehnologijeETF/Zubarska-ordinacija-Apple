@@ -3,7 +3,6 @@ var regexTelefon = /^\+?(\d{5})[-| ]?(\d{3})[-| ]?(\d{3})$/;
 var regexEmail = /\b[a-zA-Z0-9+_-]+@+[a-zA-Z]+([.][a-z]+)*\b$/;
 
 
-
 function enablebutton()
 {
     var opcina = document.getElementsByClassName('opcina')[0];
