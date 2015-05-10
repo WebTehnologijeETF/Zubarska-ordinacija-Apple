@@ -54,7 +54,7 @@ function enablebutton()
 function validate()
 {
     
-    var vratiFalse = true; 
+   var vratiFalse = true; 
     var imePrezime = document.getElementsByClassName('name')[0];
     var email = document.getElementsByClassName('email')[0];
     var telefon = document.getElementsByClassName('telefon')[0];
@@ -183,7 +183,7 @@ function vratiBorder(objekat)
 
 function enableUnosPoruke()
 {
-    var poruka = document.getElementsByClassName('message')[0];
+   var poruka = document.getElementsByClassName('message')[0];
     var email = document.getElementsByClassName('email')[0];
     var niz = regexEmail.exec(email.value);
     

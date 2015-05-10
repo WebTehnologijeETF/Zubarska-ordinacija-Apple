@@ -504,6 +504,15 @@ label
     float:left;
 }
 
+.kontakt-forma .neispravnoname, .kontakt-forma .neispravnoemail, .kontakt-forma .neispravnotelefon {
+    width: 100%;
+    height: 30px;
+    margin:15px 0;
+    padding:3px 6px;
+    float:left;
+    border:solid 1px #ff0000;
+}
+
 .kontakt-forma .mjesto, .kontakt-forma .opcina
 {
     width: 100%;
@@ -550,6 +559,11 @@ label
 }
 
 .kontakt-forma .name:hover, .kontakt-forma .email:hover, .kontakt-forma .message:hover, .kontakt-forma .godiste:hover, .kontakt-forma .telefon:hover, .kontakt-forma .opcina:hover,  .kontakt-forma .mjesto:hover
+{
+    border: 1px solid #ffc75a;
+}
+
+.kontakt-forma .neispravnoname:hover, .kontakt-forma .neispravnoemail:hover, .kontakt-forma .neispravnomessage:hover, .kontakt-forma .neispravnotelefon:hover
 {
     border: 1px solid #ffc75a;
 }
