@@ -50,12 +50,13 @@
          </div>
         <br>
     
-    <?php include("php/kontaktvalidacija.php"); ?>
+    <?php include("phpval/kontaktvalidacija.php"); ?>
     
     <!-- Sve je ispravno -->
     <?php if(!isset($_POST['hidden']) && isset($_POST['ime']) && isset($_POST['email']) && isset($_POST['telefon']) && isset($_POST['message']) && validacijaIme($_POST['ime']) && validacijaEmail($_POST['email']) && validacijaTelefon($_POST['telefon']) && validacijaPoruka($_POST['message'])) : ?>
     
-    <?php echo "Provjerite da li ste ispravno popunili kontakt formu!<br/><br/>";
+    <?php 
+        echo "Provjerite da li ste ispravno popunili kontakt formu!<br/><br/>";
         echo "Uneseni podaci: ";
         echo $_POST['ime'];
         echo $_POST['email'];
@@ -70,44 +71,29 @@
         
 <?php endif; ?>
         
-        <?php /*if(isset($_POST['sakriven']) && $_POST['sakriven']=="Da")
-                { */
-                   ini_set("SMTP", "webmail.etf.unsa.ba");
-                    ini_set("smtp_port", "25");
-                    ini_set('sendmail_from', 'egazetic1@etf.unsa.ba');
-                 
-                  ini_set('display_errors', 'On');
-			error_reporting(E_ALL);
-						//send mail
-						$message = "ime";
-                        $message = "poruka";
-			          	$eol = PHP_EOL;
-			          	$from = "egazetic1@etf.unsa.ba";
-			          	$subject = "Kontakt forma message";
-			          	/*komentar*/
-			          	$separator = md5(time());
-			          	// glavni headeri
-			          	$headers  = "From: ".$from.$eol;
-			          	$headers .= "Reply-To: ".$from.$eol;
-			          	$headers .= "MIME-Version: 1.0".$eol;
-			          	$headers .= "Cc: egazetic1@etf.unsa.ba".$eol;
-			          	$headers .= "Content-Type: multipart/mixed; boundary=\"".$separator."\"".$eol.$eol;
-			          	$headers .= "Content-Transfer-Encoding: 7bit".$eol;
-			          	$headers .= "This is a MIME encoded message.".$eol.$eol;
-			          	// message
-			          	$headers .= "--".$separator.$eol;
-			          	$headers .= "Content-Type: text/html; charset=\"UTF-8\"".$eol;
-			          	$headers .= "Content-Transfer-Encoding: 8bit".$eol.$eol;
-			          	$headers .= $message.$eol.$eol;	
+        <?php 
+        if(isset($_POST['sakriven']) && $_POST['sakriven']=="Da")
+                { 
 
-			          	// send message
-			          	mail("egazetic1@gmail.com ", $subject, "", $headers);
-			          	echo $headers;
-					
-            //    }
+                    ini_set("SMTP","webmail.etf.unsa.ba");
+                    ini_set("smtp_port","25");
+                    ini_set('sendmail_from','egazetic1@etf.unsa.ba');
+                    $to = "egazetic1@etf.unsa.ba";
+                    $naslov = "Zubarska ordinacija Apple";
+                    $cc = "vljubovic1@etf.unsa.ba";	
+                    $email = "egazetic1@gmail.com";
+
+                    $header = "From: ".$to."\r\n"."Cc: ".$cc."\r\n"."Reply-To: ".$naslov."\r\n"."Content-Type: text/html; charset=\"UTF-8\""."\r\n";
+                    $poruka = "poruka";
+
+                    $dodatno = "CC: " . $cc . "\r\n" . "Reply-To: " . $email;
+                    $poslanMail = mail($to, $naslov, $poruka, $dodatno);
+                    echo ($poslanMail == 1) ? "Zahvaljujemo vam sto ste nas kontaktirali." : "Došlo je do greške pri slanju maila.";
+    
+          }
         ?>
         
-		<form class="kontakt-forma" action='ispravankontakt.php' method="POST" onSubmit="return validate();">
+            <form class="kontakt-forma" action='ispravankontakt.php' method="POST" onSubmit="return validate();">
            <div id="testopcina"><label>Općina:</label><br>
             <input type="text" class="opcina" onChange="enablebutton()">
             <label>Mjesto:</label>
@@ -119,22 +105,22 @@
              </div> <br><br><br><br><br>
             
             <!-- Ime i prezime -->
-			<label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label><div class="prikazime"></div>
+                <label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label><div class="prikazime" ></div>
             
 			<input class="name" type="text" name="ime" value="<?php if(isset($_POST['ime'])) echo $_POST['ime']; else echo ""; ?>"><br><br>
-                <div class="greskaime"><?php if(isset($_POST['ime'])) { if(validacijaIme($_POST['ime'])) { echo ""; } else { echo "greska";} }  ?> </div>
+                <div class="greskaime"><?php if(isset($_POST['ime'])) { if(validacijaIme($_POST['ime'])) { echo ""; } else { echo "Greska";} }  ?> </div>
             <br>
             
             <!-- Email -->
 			<label class="zvjezdica">*&nbsp;</label><label>Email:&nbsp;</label><div class="prikazemail"></div>
 			<input class="email" type="email" onChange="enableUnosPoruke()" name="email" value="<?php if(isset($_REQUEST['email'])) echo $_REQUEST['email']; else echo ""; ?>" novalidate><br><br>
-            <div class="greskaemail"><?php if(isset($_POST['email'])) { if(validacijaEmail($_POST['email'])) { echo ""; } else { echo "greska";} }  ?></div>	
+            <div class="greskaemail"><?php if(isset($_POST['email'])) { if(validacijaEmail($_POST['email'])) { echo ""; } else { echo "Greska";} }  ?></div>	
             <br>
             
             <!-- Telefon -->
             <label class="zvjezdica">*&nbsp;</label><label>Telefon:&nbsp;</label><div class="prikaztelefon"></div>
             <input class="telefon" type="text" name="telefon" value="<?php if(isset($_REQUEST['telefon'])) echo $_REQUEST['telefon']; else echo ""; ?>"><br><br>
-            <div class="greskatelefon"><?php if(isset($_POST['telefon'])) { if(validacijaTelefon($_POST['telefon'])) { echo ""; } else { echo "greska";} }  ?></div>
+            <div class="greskatelefon"><?php if(isset($_POST['telefon'])) { if(validacijaTelefon($_POST['telefon'])) { echo ""; } else { echo "Greska";} }  ?></div>
             <br>
             
             <!-- Godiste -->
@@ -150,7 +136,7 @@
             <!-- Poruka -->
 			<label class="zvjezdica">*&nbsp;</label><label>Poruka:&nbsp;</label><div class="prikazporuka"></div>
             <textarea class="message"  name="message" > <?php if(isset($_REQUEST['message'])) echo $_REQUEST['message']; else echo ""; ?> </textarea><br>
-            <div class="greskaporuka"><?php if(isset($_POST['message'])) { if(validacijaPoruka($_POST['message'])) { echo ""; } else { echo "greska";} } ?></div>
+            <div class="greskaporuka"><?php if(isset($_POST['message'])) { if(validacijaPoruka($_POST['message'])) { echo ""; } else { echo "Greska";} } ?></div>
             <br>
             <br>
              

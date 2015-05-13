@@ -12,7 +12,7 @@
          </div>
         <br>
     
-    <?php include("php/kontaktvalidacija.php"); ?>
+    <?php include("phpval/kontaktvalidacija.php"); ?>
     
     <!-- Sve je ispravno -->
     <?php if(isset($_POST['ime']) && isset($_POST['email']) && isset($_POST['telefon']) && isset($_POST['message']) && validacijaIme($_POST['ime']) && validacijaEmail($_POST['email']) && validacijaTelefon($_POST['telefon']) && validacijaPoruka($_POST['message'])) : ?>
