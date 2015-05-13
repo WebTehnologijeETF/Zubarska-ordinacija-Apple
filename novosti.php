@@ -52,12 +52,12 @@ foreach (new DirectoryIterator('./novosti') as $file) {
             $index = $index + 1;
         }
         
-        $detaljnije = str_replace( "\r\n", '<br />', $detaljnije );
-        $datum = str_replace( "\r\n", '<br />', $datum );
-        $naslov = str_replace( "\r\n", '<br />', $naslov );
-        $slika = str_replace( "\r\n", '<br />', $slika );
-        $tekst = str_replace( "\r\n", '<br />', $tekst );
-        $autor = str_replace( "\r\n", '<br />', $autor );
+        $detaljnije = "'" .str_replace( "\r\n", '<br />', $detaljnije )."'";
+        $datum = "'" .str_replace( "\r\n", '<br />', $datum )."'";
+        $naslov ="'" . str_replace( "\r\n", '<br />', $naslov )."'";
+        $slika = "'" .str_replace( "\r\n", '<br />', $slika )."'";
+        $tekst = "'" .str_replace( "\r\n", '<br />', $tekst )."'";
+        $autor = "'" .str_replace( "\r\n", '<br />', $autor )."'";
         
         
          echo '<div class="novost">'.
@@ -75,7 +75,9 @@ foreach (new DirectoryIterator('./novosti') as $file) {
                 '<div class="picture1"></div>'.
                 "$tekst"; ?>
          <?php if($otvoriDalje): ?>
-         <input class="detaljnije" value="Detaljnije" onclick="novostiajax('<?php echo $datum;?>','<?php echo $autor;?>','<?php echo $naslov;?>','<?php echo $slika;?>','<?php echo $tekst;?>','<?php echo $detaljnije;?>'); return false;" type="button">
+
+         <?php echo '<input class="detaljnije" value="Detaljnije" onclick="novostiajax('.$datum.','.$autor.','.$naslov.','.$slika.','.$tekst.','.$detaljnije.'); return false;" type="button">'; ?> 
+
         <?php endif;?>
            <?php echo '</div>'.
             '<div class="border-bottom"></div>'.

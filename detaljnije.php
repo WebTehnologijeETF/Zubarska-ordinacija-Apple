@@ -7,7 +7,7 @@
         $naslov = $_GET['naslov'];
         $tekst = $_GET['tekst'];
 
-echo '<div class="content-naslov">Novosti</div>';
+        echo '<div class="content-naslov">Novosti</div>';
 
          echo '<div class="novost">'.
             '<div class="naslov">'.

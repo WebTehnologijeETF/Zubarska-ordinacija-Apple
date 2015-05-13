@@ -10,7 +10,8 @@ function validacijaIme($ime)
     return true;
 }
 
-function validacijaEmail($email) {
+function validacijaEmail($email) 
+{
     
     $regexEmail = "/\b[a-zA-Z0-9+_-]+@+[a-zA-Z]+([.][a-z]+)*\b$/";
     if(strlen(preg_replace('/\s+/','',$email)) == 0 || !preg_match($regexEmail, $email)) 
@@ -19,7 +20,8 @@ function validacijaEmail($email) {
     return true;
 }
 
-function validacijaTelefon($telefon) {
+function validacijaTelefon($telefon) 
+{
     
     $regexTelefon = "/^\+?(\d{5})[-| ]?(\d{3})[-| ]?(\d{3})$/";
     

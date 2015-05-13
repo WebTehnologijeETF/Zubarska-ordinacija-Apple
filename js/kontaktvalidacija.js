@@ -52,8 +52,7 @@ function enablebutton()
 
 function validate()
 {
-    
-   var vratiFalse = true; 
+    var vratiFalse = true; 
     var imePrezime = document.getElementsByClassName('name')[0];
     var email = document.getElementsByClassName('email')[0];
     var telefon = document.getElementsByClassName('telefon')[0];
@@ -99,13 +98,12 @@ function validate()
         vratiFalse = false;
     }
     
-    // Validacija email-a
-    // Sam se validira, nije zasnovano na nasem regexu
-      var nizemail = regexEmail.exec(email.value);
+    
+    var nizemail = regexEmail.exec(email.value);
 
     var greska2 = document.getElementsByClassName('greskaemail')[0];
     var slika2 = document.getElementsByClassName('prikazemail')[0];
-    if(email.value == "null" || email.value == "")
+    if(email.value == "null" || email.value == "" || niz==null)
     {
         greska2.innerHTML="Obavezno polje za unos!";
         email.style.border = "solid 1px #ff0000";
@@ -138,7 +136,6 @@ function validate()
         telefon.style.border = "solid 1px #ff0000";
         slika3.style.background ="url(img/false.png) no-repeat";
         vratiFalse = true;
-        vratiFalse = true;
     }
     else
     {
@@ -146,19 +143,22 @@ function validate()
         vratiBorder(telefon);
         slika3.style.background ="url(img/true.png) no-repeat";
         vratiFalse = false;
-        vratiFalse = true;
     }
     
     // Validacija poruke 
     // Bez regexa
     var greska4 = document.getElementsByClassName('greskaporuka')[0];
     var slika4 = document.getElementsByClassName('prikazporuka')[0];
-    if(poruka.value == "null" || poruka.value == "")
+    var s = poruka.value;
+    
+    if(s.trim().length == 0 || s == "null" || s == "" )
     {
         greska4.innerHTML="Obavezno polje za unos!";
         poruka.style.border = "solid 1px #ff0000";
         slika4.style.background ="url(img/false.png) no-repeat";
         vratiFalse = true;
+        console.log(s.trim.length);
+        
     }
     else
     {
@@ -169,6 +169,7 @@ function validate()
         
     }
     
+    console.log(!vratiFalse);
     return !vratiFalse;
 }
 
@@ -185,10 +186,10 @@ function enableUnosPoruke()
    var poruka = document.getElementsByClassName('message')[0];
     var email = document.getElementsByClassName('email')[0];
     var niz = regexEmail.exec(email.value);
+    var s = poruka.value;
     
-    if(poruka.value.length > 0 || niz == null)
-        poruka.disabled = true;
-    else 
+    if(s.trim().length == 0  || niz == null)
         poruka.disabled = false;
-        
+    else 
+        poruka.disabled = true;    
 }
