@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 	<title>Ordinacija</title>
@@ -9,6 +9,7 @@
     <script src="js/otvoristranicuajax.js"></script>
     <script src="js/kontaktvalidacija.js"></script>
 </head>
+
 <body onLoad="otvoriajax('pocetna')">
 	<div class="header">
 		<div class="number">+387 33 555 555</div>
