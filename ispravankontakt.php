@@ -106,17 +106,6 @@
                     if($poslanMail == 1) 
                            echo "<div class='poslano'>Zahvaljujemo vam što ste nas kontaktirali.</div>";
             
-                    $sendgrid = new SendGrid('egazetic1@gmail.com', 'e1l2m3a456');
-                    $emailgrid = new SendGrid\Email();
-                    $emailgrid
-                        ->addTo('egazetic1@etf.unsa.ba')
-                        ->setFrom('egazetic1@gmail.com')
-                        ->setSubject('Subject goes here')
-                        ->setText('Hello World!')
-                        ->setHtml('<strong>Hello World!</strong>');
-
-                    $sendgrid->send($emailgrid);
-        
                     $prikaziFormu = false;
                 }
         ?>
