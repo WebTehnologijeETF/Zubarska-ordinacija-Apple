@@ -599,6 +599,15 @@ label
     background-size: contain;
 }
 
+.prikazime1, .prikazemail1, .prikaztelefon1, .prikazporuka1
+{
+    float:left;
+    height:20px;
+    width:25px;
+    background: url('../img/false.png') no-repeat;
+    background-size: contain;
+}
+
 .zvjezdica
 {
     color:red;
@@ -696,6 +705,30 @@ label
     text-transform: uppercase;
     text-align:center;
 }
+
+
+.content .poslano
+{
+    font-size:16px;
+    padding:10px;
+    text-transform: uppercase;
+    text-align:center;
+}
+
+.content .poslanotabela
+{
+    font-size:16px;
+    padding:10px;
+    text-transform: uppercase;
+    margin:0 auto;
+}
+
+.content .poslanotabela td
+{
+    float:left;   
+    padding: 10px;
+}
+
 .novost .naslov
 {
     background-color: #ffc75a;

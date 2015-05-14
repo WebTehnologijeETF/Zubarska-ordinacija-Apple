@@ -1,4 +1,11 @@
-  <?php
+<!DOCTYPE html>
+<html>
+
+<header>
+</header>
+<body>
+
+    <?php
 
         $autor = $_GET['autor'];
         $detaljnije = $_GET['det'];
@@ -7,8 +14,16 @@
         $naslov = $_GET['naslov'];
         $tekst = $_GET['tekst'];
 
-        echo '<div class="content-naslov">Novosti</div>';
+        
+        $slika = str_replace("'", "", $slika);
+        $autor = str_replace("'", "", $autor);
+        $datum = str_replace("'", "", $datum);
+        $naslov = str_replace("'", "", $naslov);
+        $detaljnije = str_replace("'", "", $detaljnije);
+        $tekst = str_replace("'", "", $tekst);
 
+        echo '<div class="content-naslov">Novosti</div>';
+    
          echo '<div class="novost">'.
             '<div class="naslov">'.
                  '<div>'.
@@ -21,9 +36,26 @@
                 $naslov.
             '</div>'.
             '<div class="tekst">'.
-                '<div class="picture1"></div>'.
-                "$tekst".'</div>'.'<div class="tekst">'.$detaljnije.'</div>'.
+                '<div class="pic"></div>'?>
+     <style type="text/css">
+        .pic
+        {
+            height:300px;
+            width:600px;
+            margin:0 auto;
+            background-image: url(<?php echo $slika; ?>);
+            background-repeat:no-repeat;
+            background-size: contain;
+        }
+        </style>
+            <?php echo $tekst.'</div>'.'<div class="tekst">'.$detaljnije.'</div>'.
             '<div class="border-bottom"></div>'.
        '</div>';
+ 
     ?>
+    
+       
+    
+</body>
+</html>
     

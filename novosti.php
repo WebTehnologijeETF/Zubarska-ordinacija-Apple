@@ -1,4 +1,12 @@
-<?php
+<!DOCTYPE html>
+<html>
+<header>
+    
+</header>
+    
+<body>
+
+    <?php
 echo '<div class="content-naslov">Novosti</div>';
 $nizdatoteka= array();
 foreach (new DirectoryIterator('./novosti') as $file) {
@@ -52,14 +60,8 @@ foreach (new DirectoryIterator('./novosti') as $file) {
             $index = $index + 1;
         }
         
-        $detaljnije = "'" .str_replace( "\r\n", '<br />', $detaljnije )."'";
-        $datum = "'" .str_replace( "\r\n", '<br />', $datum )."'";
-        $naslov ="'" . str_replace( "\r\n", '<br />', $naslov )."'";
-        $slika = "'" .str_replace( "\r\n", '<br />', $slika )."'";
-        $tekst = "'" .str_replace( "\r\n", '<br />', $tekst )."'";
-        $autor = "'" .str_replace( "\r\n", '<br />', $autor )."'";
-        
-        
+     
+    
          echo '<div class="novost">'.
             '<div class="naslov">'.
                  '<div>'.
@@ -72,12 +74,33 @@ foreach (new DirectoryIterator('./novosti') as $file) {
                 $naslov.
             '</div>'.
             '<div class="tekst">'.
-                '<div class="picture1"></div>'.
+                '<div class="pic"></div>'.
                 "$tekst"; ?>
-         <?php if($otvoriDalje): ?>
+    
+          <style type="text/css">
+        .pic
+        {
+            height:300px;
+            width:600px;
+            margin:0 auto;
+            background-image: url(<?php echo $slika; ?>);
+            background-repeat:no-repeat;
+            background-size: contain;
+        }
+        </style>
+    <input type="hidden" name="stil" value='<?php echo $slika; ?>'>
+                 <?php if($otvoriDalje): 
+                    $detaljnije = "'" .str_replace( "\r\n", '<br />', $detaljnije )."'";
+                    $datum = "'" .str_replace( "\r\n", '<br />', $datum )."'";
+                    $naslov ="'" . str_replace( "\r\n", '<br />', $naslov )."'";
+                    $slika = "'" .str_replace( "\r\n", '<br />', $slika )."'";
+                    $tekst = "'" .str_replace( "\r\n", '<br />', $tekst )."'";
+                    $autor = "'" .str_replace( "\r\n", '<br />', $autor )."'";
+
+                ?>
 
          <?php echo '<input class="detaljnije" value="Detaljnije" onclick="novostiajax('.$datum.','.$autor.','.$naslov.','.$slika.','.$tekst.','.$detaljnije.'); return false;" type="button">'; ?> 
-
+<
         <?php endif;?>
            <?php echo '</div>'.
             '<div class="border-bottom"></div>'.
@@ -86,6 +109,8 @@ foreach (new DirectoryIterator('./novosti') as $file) {
 
     }
     ?>
+    </body>
+</html>
     
      <!--   <br><br><br><br>
 		<div class="novost">
