@@ -52,7 +52,6 @@ function enablebutton()
 
 function validate()
 {
-    var vratiFalse = true; 
     var imePrezime = document.getElementsByClassName('name')[0];
     var email = document.getElementsByClassName('email')[0];
     var telefon = document.getElementsByClassName('telefon')[0];
@@ -60,7 +59,7 @@ function validate()
     var hitnost = document.getElementsByClassName('hitnost')[0];
     var poruka = document.getElementsByClassName('message')[0];
     
-    
+    var brojac = 0;
     // Validacija imena i prezimena
     // Sa regexom
     var niz = regexIme.exec(imePrezime.value);
@@ -72,15 +71,14 @@ function validate()
         slika1.style.background ="url(img/false.png) no-repeat";
         greska.innerHTML="Obavezno polje za unos!";
         imePrezime.style.border = "solid 1px #ff0000";
-        
-        vratiFalse = true;
+        brojac++;
     }
     else if(imePrezime.value.length < 3) 
     {
         greska.innerHTML = "Prekratko ime.";
         imePrezime.style.border = "solid 1px #ff0000";
         slika1.style.background ="url(img/false.png) no-repeat";
-        vratiFalse = true;
+        brojac++;
         
     }
     else if(niz == null)
@@ -88,14 +86,14 @@ function validate()
         greska.innerHTML = "Unos dozvoljava samo slova.";
         imePrezime.style.border = "solid 1px #ff0000";
         slika1.style.background ="url(img/false.png) no-repeat";
-        vratiFalse = true;
+        brojac++;
     }
     else
     {
         greska.innerHTML="";
         vratiBorder(imePrezime);
         slika1.style.background ="url(img/true.png) no-repeat";
-        vratiFalse = false;
+        brojac--;
     }
     
     
@@ -108,14 +106,14 @@ function validate()
         greska2.innerHTML="Obavezno polje za unos!";
         email.style.border = "solid 1px #ff0000";
         slika2.style.background ="url(img/false.png) no-repeat";
-        vratiFalse = true;
+        brojac++;
     }
     else if(nizemail!=null)
     {
         greska2.innerHTML="";
         vratiBorder(email);
         slika2.style.background ="url(img/true.png) no-repeat";
-        vratiFalse = false;
+        brojac--;
     }
     
     //Validacija broja
@@ -123,12 +121,13 @@ function validate()
     niz = regexTelefon.exec(telefon.value);
     var greska3 = document.getElementsByClassName('greskatelefon')[0];
     var slika3 = document.getElementsByClassName('prikaztelefon')[0];
-    if(telefon.value == "null" || telefon.value == "")
+     var p = telefon.value;
+    if(p.trim().length == 0 || telefon.value == "null" || telefon.value == "")
     {
         greska3.innerHTML="Obavezno polje za unos!";
         telefon.style.border = "solid 1px #ff0000";
         slika3.style.background = "url(img/false.png) no-repeat";
-        vratiFalse = true;
+        brojac++;
     }
     else if(niz == null)
     {
@@ -136,13 +135,14 @@ function validate()
         telefon.style.border = "solid 1px #ff0000";
         slika3.style.background ="url(img/false.png) no-repeat";
         vratiFalse = true;
+        brojac++;
     }
     else
     {
         greska3.innerHTML="";
         vratiBorder(telefon);
         slika3.style.background ="url(img/true.png) no-repeat";
-        vratiFalse = false;
+        brojac--;
     }
     
     // Validacija poruke 
@@ -156,21 +156,21 @@ function validate()
         greska4.innerHTML="Obavezno polje za unos!";
         poruka.style.border = "solid 1px #ff0000";
         slika4.style.background ="url(img/false.png) no-repeat";
-        vratiFalse = true;
-        console.log(s.trim.length);
-        
+        brojac++;
     }
     else
     {
         greska4.innerHTML="";
         vratiBorder(poruka);
         slika4.style.background ="url(img/true.png) no-repeat";
-        vratiFalse = false;
-        
+        brojac--;
     }
     
-    console.log(!vratiFalse);
-    return !vratiFalse;
+    console.log(brojac);
+    if(brojac== -4)
+    return true;
+    
+    return false;
 }
 
 function vratiBorder(objekat)
