@@ -6,7 +6,6 @@
 <body>
 
     <?php
-
         $autor = $_GET['autor'];
         $detaljnije = $_GET['det'];
         $datum = $_GET['datum'];
@@ -16,6 +15,7 @@
 
         
         $slika = str_replace("'", "", $slika);
+        $slika = str_replace("<br/>", "", $slika);
         $autor = str_replace("'", "", $autor);
         $datum = str_replace("'", "", $datum);
         $naslov = str_replace("'", "", $naslov);
@@ -36,14 +36,13 @@
                 $naslov.
             '</div>'.
             '<div class="tekst">'.
-                '<div class="pic"></div>'?>
+                "<div class='pic'><img height='300' width='600' src='$slika'></img></div>"?>
      <style type="text/css">
         .pic
         {
             height:300px;
             width:600px;
             margin:0 auto;
-            background-image: url(<?php echo $slika; ?>);
             background-repeat:no-repeat;
             background-size: contain;
         }
@@ -52,10 +51,7 @@
             '<div class="border-bottom"></div>'.
        '</div>';
  
-    ?>
-    
-       
-    
+    ?> 
 </body>
 </html>
     

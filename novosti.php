@@ -7,6 +7,7 @@
 <body>
 
     <?php
+header('Content-Type: text/html; charset=utf-8');
 echo '<div class="content-naslov">Novosti</div>';
 $nizdatoteka= array();
 foreach (new DirectoryIterator('./novosti') as $file) {
@@ -44,7 +45,7 @@ foreach (new DirectoryIterator('./novosti') as $file) {
         
        while($index < $veldatoteke)
         {
-           if($datoteka[$index] == "--\r\n") 
+           if($datoteka[$index] == "--" . PHP_EOL) 
            {
                $otvoriDalje = true;
                $index = $index + 1;
@@ -60,8 +61,12 @@ foreach (new DirectoryIterator('./novosti') as $file) {
             $index = $index + 1;
         }
         
-     
-    
+        $detaljnije = str_replace( PHP_EOL, '<br/>', $detaljnije );
+        $datum = str_replace( PHP_EOL, '<br/>', $datum );
+        $naslov = str_replace( PHP_EOL, '<br/>', $naslov );
+        $tekst = str_replace( PHP_EOL, '<br/>', $tekst );
+        $autor = str_replace( PHP_EOL, '<br/>', $autor );
+
          echo '<div class="novost">'.
             '<div class="naslov">'.
                  '<div>'.
@@ -74,33 +79,34 @@ foreach (new DirectoryIterator('./novosti') as $file) {
                 $naslov.
             '</div>'.
             '<div class="tekst">'.
-                '<div class="pic"></div>'.
+                "<div class='pic'><img height='300' width='600' src='$slika'></img></div>".
                 "$tekst"; ?>
     
           <style type="text/css">
-        .pic
-        {
-            height:300px;
-            width:600px;
-            margin:0 auto;
-            background-image: url(<?php echo $slika; ?>);
-            background-repeat:no-repeat;
-            background-size: contain;
-        }
+            .pic
+            {
+                height:300px;
+                width:600px;
+                margin:0 auto;
+                background-repeat:no-repeat;
+                background-size: contain;
+            }
         </style>
     <input type="hidden" name="stil" value='<?php echo $slika; ?>'>
                  <?php if($otvoriDalje): 
-                    $detaljnije = "'" .str_replace( "\r\n", '<br />', $detaljnije )."'";
-                    $datum = "'" .str_replace( "\r\n", '<br />', $datum )."'";
-                    $naslov ="'" . str_replace( "\r\n", '<br />', $naslov )."'";
-                    $slika = "'" .str_replace( "\r\n", '<br />', $slika )."'";
-                    $tekst = "'" .str_replace( "\r\n", '<br />', $tekst )."'";
-                    $autor = "'" .str_replace( "\r\n", '<br />', $autor )."'";
+                    $detaljnije = "'" .str_replace( PHP_EOL, '<br/>', $detaljnije )."'";
+                    $datum = "'" .str_replace( PHP_EOL, '<br/>', $datum )."'";
+                    $naslov ="'" . str_replace( PHP_EOL, '<br/>', $naslov )."'";
+                    $slika = "'" .str_replace( PHP_EOL, '<br/>', $slika )."'";
+                    $tekst = "'" .str_replace( PHP_EOL, '<br/>', $tekst )."'";
+                    $autor = "'" .str_replace( PHP_EOL, '<br/>', $autor )."'";
 
                 ?>
 
-         <?php echo '<input class="detaljnije" value="Detaljnije" onclick="novostiajax('.$datum.','.$autor.','.$naslov.','.$slika.','.$tekst.','.$detaljnije.'); return false;" type="button">'; ?> 
-<
+         <?php echo '<input class="detaljnije" value="Detaljnije" onclick="novostiajax('.$datum.','.$autor.','.$naslov.','.$slika.','.$tekst.','.$detaljnije.'); return false;" type="button">'; 
+   
+    ?> 
+ 
         <?php endif;?>
            <?php echo '</div>'.
             '<div class="border-bottom"></div>'.
@@ -111,67 +117,3 @@ foreach (new DirectoryIterator('./novosti') as $file) {
     ?>
     </body>
 </html>
-    
-     <!--   <br><br><br><br>
-		<div class="novost">
-            <div class="naslov">
-                  <div>
-                      <div class="datum">
-                          <div class="date-icon">▦</div>
-                          28.03.2015
-                      </div>                                   <div class="autor">Dr. Apple</div>
-                  </div>
-                Započeli smo koristiti Piezo tehnologiju
-            </div>
-            <div class="tekst">
-                <div class="picture1"></div>
-                Započeli smo u kirurgiji koristiti piezo tehnologiju.  PIEZOSURGERY® tehnika pomoću specijalnih ultrazvučnih vibracija omogućava vrlo precizan rad u kirurgiji te smanjuje potoperativne neugodnosti kod pacijenta.
-            <div class="detaljnije"><a>Detaljnije</a></div>
-            </div>
-            <div class="border-bottom"></div>
-        </div>
-        
-        <br><br><br><br><br>
-		<div class="novost">
-            <div class="naslov">                 
-                  <div>
-                      <div class="datum">
-                          <div class="date-icon">▦</div>
-                          26.03.2015
-                      </div>                                   
-                      <div class="autor">Dr. Apple</div>
-                  </div>
-                TruKlear - samoligirajuće keramičke bravice
-            </div>
-            <div class="tekst">
-                <div class="picture2"></div>
-Od januara 2015. godine radimo s potpuno keramičkim samoligirajućim bravicama – TruKlear koje su u kombinaciji s bijelim žicama potpuno nevidljive.
-
-TruKlear su prve samoligirajuće bravice napravljene u potpunosti bez metala. Takve bravice su vrlo diskretne, brzo se skidaju i mogu ih nositi sve dobne skupine.
-            <div class="detaljnije"><a>Detaljnije</a></div>
-            </div>
-            <div class="border-bottom"></div>
-        </div>
-        <br><br><br><br><br>
-        
-		<div class="novost">
-            <div class="naslov">
-                  <div>
-                      <div class="datum">
-                          <div class="date-icon">▦</div>
-                          24.03.2015
-                      </div>                                   <div class="autor">Dr. Apple</div>
-                  </div>
-                TruKlear - samoligirajuće keramičke bravice
-            </div>
-            <div class="tekst">
-                <div class="picture3"></div>
-Osim 2D ortodontske ligvalne tehnike koju sada radimo, od maja 2014. god. počet ćemo koristiti Incognito sustav lingvalne terapije kojim se mogu rješavati kompleksniji ortodontski slučajevi.
-
-Također, incognito bravice su praktički 'nevidljive' jer se ugrađuju sa unutarnje strane zuba te zbog niskog profila ne smetaju govoru.
-            <div class="detaljnije"><a>Detaljnije</a></div>
-            </div>
-            <div class="border-bottom"></div>
-        </div>
-        <br><br><br><br><br>
--->

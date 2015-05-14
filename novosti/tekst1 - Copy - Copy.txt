@@ -3,5 +3,5 @@ Vedran Ljubovic
 OVO JE NEKI PRIMJER NOVOSTI
 https://zamger.etf.unsa.ba/images/16x16/zad_ok.png
 Sada cu napisati neki osnovni tekst.
-Ovaj osnovni tekst se nalazi u viöe redova.
+Ovaj osnovni tekst se nalazi u vi≈°e redova.
 Lorem ipsum dolor sit amet i tako dalje mrsko mi je da kopiram.

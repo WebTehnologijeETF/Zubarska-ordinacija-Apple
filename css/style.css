@@ -608,6 +608,15 @@ label
     background-size: contain;
 }
 
+.prikazime2, .prikazemail2, .prikaztelefon2, .prikazporuka2
+{
+    float:left;
+    height:20px;
+    width:25px;
+    background: url('../img/true.png') no-repeat;
+    background-size: contain;
+}
+
 .zvjezdica
 {
     color:red;
@@ -727,6 +736,11 @@ label
 {
     float:left;   
     padding: 10px;
+}
+
+.content .poslanotabela .desno
+{
+    text-transform: capitalize;
 }
 
 .novost .naslov
