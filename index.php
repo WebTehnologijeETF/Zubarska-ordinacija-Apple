@@ -30,7 +30,7 @@ error_reporting(-1);
             ?>
 
             
-            <?php  if (!isset($_SESSION['username'])): echo "TEST";?>
+            <?php  if (!isset($_SESSION['username'])): ;?>
             
             <form action='adminpanel.php' method="POST">
             <label class="username">Username: </label>

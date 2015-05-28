@@ -19,7 +19,7 @@ error_reporting(-1);
 <body >
 	<div class="header">
 		<div class="login">
-            
+          <?php  echo "TEST"; ?>
             <?php 
                 if(isset($_POST['logout']))
                 {
