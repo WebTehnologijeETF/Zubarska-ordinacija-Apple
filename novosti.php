@@ -138,7 +138,7 @@ header('Content-Type: text/html; charset=utf-8');
     <?php 
         // ISPIS VIJESTI
         // $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-            $veza = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "flocal");
+            $veza = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
         $vijesti= $veza->query("select id, naslov, tekst, UNIX_TIMESTAMP(datum) datumvijesti, autor, detaljnije,slika from vijest order by datum desc");
 

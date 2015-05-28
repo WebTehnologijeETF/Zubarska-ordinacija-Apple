@@ -270,7 +270,7 @@ $conn = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adm
         else if(isset($_POST['obrisi'])) // BRISANJE KOMENTARA IZ BAZE
         {
            // $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-            $conn = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "flocal");
+            $conn = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
             $izbrisikomentar = $conn->prepare('DELETE from komentar WHERE id=?');
             
