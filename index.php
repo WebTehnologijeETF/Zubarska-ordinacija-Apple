@@ -30,7 +30,8 @@ error_reporting(-1);
             ?>
 
             
-            <?php  if (!isset($_SESSION['username'])):?>
+            <?php  if (!isset($_SESSION['username'])): echo "TEST";?>
+            
             <form action='adminpanel.php' method="POST">
             <label class="username">Username: </label>
             <input type="text" name="username" value="<?php if(isset($_REQUEST['username'])) echo htmlentities($_REQUEST['username']); else echo ""; ?>"><br/>
