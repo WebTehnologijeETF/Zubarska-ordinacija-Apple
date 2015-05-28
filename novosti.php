@@ -91,7 +91,7 @@ header('Content-Type: text/html; charset=utf-8');
      if(isset($_POST['posaljikomentar']) && isset($_POST['komentar']) && strlen(preg_replace('/\s+/','',$_POST['komentar'])) > 0)
            {
            // $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-         $conn = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "flocal");
+         $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
             $insertujkomentar= $conn->prepare('INSERT INTO komentar (vijest, autor, tekst, email) VALUES(?, ?, ?, ?)');
             if (!$insertujkomentar) 
@@ -124,7 +124,7 @@ header('Content-Type: text/html; charset=utf-8');
         else if(isset($_POST['obrisi'])) // BRISANJE KOMENTARA IZ BAZE
         {
             //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-            $conn = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "flocal");
+            $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "flocal");
             
             $izbrisikomentar = $conn->prepare('DELETE from komentar WHERE id=?');
             
@@ -138,7 +138,7 @@ header('Content-Type: text/html; charset=utf-8');
     <?php 
         // ISPIS VIJESTI
         // $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-            $veza = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+            $veza = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
         $vijesti= $veza->query("select id, naslov, tekst, UNIX_TIMESTAMP(datum) datumvijesti, autor, detaljnije,slika from vijest order by datum desc");
 
