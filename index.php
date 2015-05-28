@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
-<?php session_start();?>
+<?php session_start();
+ini_set('display_errors','On'); ini_set('error_reporting','E_ALL | E_STRICT'); error_reporting(E_ALL);  
+?>
+    
 <head>
 	<title>Ordinacija</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -75,7 +78,6 @@
 		</ul>
 		<div class="headerpic"></div>
 	</div>
-   
 	<div class="content">
 
 	</div>

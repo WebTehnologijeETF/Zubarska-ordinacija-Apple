@@ -10,9 +10,10 @@
 </header>
     
 <body>
-    
     <?php 
-        header('Content-Type: text/html; charset=utf-8');
+ini_set('display_errors','On'); ini_set('error_reporting','E_ALL | E_STRICT'); error_reporting(E_ALL);
+
+header('Content-Type: text/html; charset=utf-8');
       
 ?>
 
@@ -87,7 +88,9 @@
     // DODAVANJE KOMENTARA U BAZU
      if(isset($_POST['posaljikomentar']) && isset($_POST['komentar']) && strlen(preg_replace('/\s+/','',$_POST['komentar'])) > 0)
            {
-            $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+           // $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+         $conn = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "flocal");
+            
             $insertujkomentar= $conn->prepare('INSERT INTO komentar (vijest, autor, tekst, email) VALUES(?, ?, ?, ?)');
             if (!$insertujkomentar) 
              {
@@ -118,7 +121,9 @@
 
         else if(isset($_POST['obrisi'])) // BRISANJE KOMENTARA IZ BAZE
         {
-            $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+            //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+            $conn = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "flocal");
+            
             $izbrisikomentar = $conn->prepare('DELETE from komentar WHERE id=?');
             
             $idkomentara = htmlentities($_POST['idkomentara'], ENT_QUOTES);
@@ -130,8 +135,8 @@
         <?php   echo '<div class="content-naslov">Novosti</div>'; ?>
     <?php 
         // ISPIS VIJESTI
-$veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-        $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+        // $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+            $veza = new PDO("mysql:dbname=appleordinacija;host=127.0.0.1;charset=utf8", "adminSFSF3dw", "flocal");
             
         $vijesti= $veza->query("select id, naslov, tekst, UNIX_TIMESTAMP(datum) datumvijesti, autor, detaljnije,slika from vijest order by datum desc");
 
