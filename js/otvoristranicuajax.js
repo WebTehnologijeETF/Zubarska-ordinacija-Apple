@@ -14,7 +14,8 @@ function otvoriajax(varijabla)
             else if (ajax.readyState == 4 && ajax.status == 404)
                 obj.innerHTML = "Greska: nepoznat URL";
         }
-        if(varijabla=="kontakt" || varijabla=="novosti" || varijabla=="detaljnije")
+        
+        if(varijabla=="kontakt" || varijabla=="novosti" || varijabla=="detaljnije" || varijabla=="adminpanel")
             var s = varijabla + ".php";
         else
              var s = varijabla + ".html";

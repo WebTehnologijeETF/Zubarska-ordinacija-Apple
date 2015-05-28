@@ -1,5 +1,6 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
+<?php session_start();?>
 <head>
 	<title>Ordinacija</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
@@ -10,9 +11,40 @@
     <script src="js/kontaktvalidacija.js"></script>
 </head>
 
-<body onLoad="otvoriajax('pocetna')">
+<body onLoad="otvoriajax('pocetna')"  >
 	<div class="header">
-		<div class="number">+387 33 555 555</div>
+		<div class="login">
+            
+            <?php 
+                if(isset($_REQUEST['logout']))
+                {
+                    unset($_SESSION['username']);
+                    session_unset();
+                }
+                
+            ?>
+
+            
+            <?php  if (!isset($_SESSION['username'])):?>
+            <form action='adminpanel.php' method="POST">
+            <label class="username">Username: </label>
+            <input type="text" name="username" value="<?php if(isset($_REQUEST['username'])) echo htmlentities($_REQUEST['username']); else echo ""; ?>"><br/>
+            <label>Password: </label>
+            <input class="password" type="text" name="password" value="<?php if(isset($_REQUEST['password'])) echo htmlentities($_REQUEST['password']); else echo ""; ?>"> <br/>
+                <input type="hidden" name="skrivenilog" value="da">
+            <input class="send" type="submit" name ="reset" value="Resetuj lozinku"> <input class="send" type="submit" value="Loguj se" name="log">
+            </form>
+            <?php else: echo 'Ulogovan kao:  '.$_SESSION['username'];?>
+            
+            <form action='index.php' method="POST">
+                 <input class="send" type="submit" value="Izađi" name="logout">
+            </form>
+            <form action='adminpanel.php' method="POST">
+                 <input class="send" type="submit" value="Adminpanel" name="adminpanel">
+            </form>
+            <?php endif; ?>
+         
+        </div>
 		<div class="logopic"></div>
 		<div class="logo"></div>
 		<ul class="meni">
@@ -43,7 +75,7 @@
 		</ul>
 		<div class="headerpic"></div>
 	</div>
-
+   
 	<div class="content">
 
 	</div>

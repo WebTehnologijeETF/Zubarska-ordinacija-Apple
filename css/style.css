@@ -55,6 +55,13 @@ body
     color:white;
 }
 
+.header .login .logporuka
+{
+    line-height: 0;
+    color:red;
+    text-transform: none;
+}
+
 
 .usluge-zatvoreno1, .usluge-zatvoreno2
 {
@@ -100,7 +107,7 @@ body
 }
 
 
-.content 
+.content , .panel
 {
     width: 100%;
 }
@@ -118,6 +125,12 @@ body
     color: white;
 }
 
+.header .login label
+{
+    font-weight: 100;
+    color: dimgray;
+}
+
 .headerpic 
 {
     overflow: auto;
@@ -126,6 +139,35 @@ body
     background: url("../img/photo1.jpg") no-repeat center center;
     opacity: 0.7;
     background-size: cover;
+}
+
+.header .login .send 
+{
+    margin:5px 0 20px 0;
+    width:150px;
+    height:35px;
+    float:right;
+    background-color: white;
+    border: 1px solid #ffc75a;
+    color:#ffc75a;
+    font-size:16px;
+}
+
+.header .login .send:hover
+{
+    background-color: gray;
+}
+
+.header .login input 
+{
+    height:25px;
+    width:195px;
+}
+
+.header .login
+{
+    padding-top:70px;
+    float:right;
 }
 
 .logo {
@@ -147,15 +189,13 @@ body
     margin-left: 1em;
 }
 
-.number {
+.login {
     text-align: right;
     padding: 0px 50px 0px 0px;
-    font-size: 23px;
     text-transform: uppercase;
     letter-spacing: 2px;
-    line-height: 200px;
+    line-height: 30px;
     height: 0px;
-    font-weight: 600;
 }
 
 .meni {
@@ -490,7 +530,7 @@ ul.partners
     color:dimgrey;
 }
 
-label
+.kontakt-forma label
 {
     margin:0px;
     float:left;
@@ -705,7 +745,7 @@ label
 }
 /*NOVOSTI*/
 
-.content .content-naslov
+.content-naslov
 {
     background-color: darkgrey;
     font-size:30px;
@@ -931,6 +971,104 @@ label
     border:0;
 }
 
+/* FORMA ADMINPANEL*/
+
+.formaadmin
+{
+    width:400px; 
+    margin:auto;
+}
+
+.formaadmin .ime, .formaadmin .email
+{
+    width:100%;
+    height:25px;
+    margin:5px 0px;
+}
+
+.formaadmin .komentar
+{
+    width:100%;
+    margin:5px 0px;
+}
+
+.formaadmin .posalji
+{
+    margin:5px 0 20px 0;
+    width:100%;
+    height:40px;
+    float:right;
+    background-color: #ffc75a;
+    border: 1px solid #ffc75a;
+    color:white;
+    font-size:16px;
+    
+}
 
 
+.formaadmin .posalji:hover
+{
+        color:grey;
+    background-color: white;
+    border: 1px solid #ffc75a;
+}
 
+.formaadmin label
+{
+    font-weight: 100;
+    color: dimgray;
+}
+
+.formaadmin .naslovforme
+{
+    font-size: 15px;
+    
+    color: dimgray;
+}
+
+.tabelaadmin
+{
+    width:100%;
+    background-color:lightgray;
+}
+.tabelaadmin tr
+{
+/*   width:100%;*/
+}
+
+.tabelaadmin .lijevo
+{
+    color:dimgray;
+    padding:10px;
+    float:left;
+}
+
+.tabelaadmin .desno
+{
+    padding:10px;
+    float:right;
+    font-size: 27px;   
+    color: dimgray;
+}
+
+.tabelaadmin .centar
+{
+    border:1px solid gray;
+}
+
+.tabelaadmin .centarlabela
+{
+    color:gray;
+}
+
+.tabelaadmin .centaremail
+{
+    color:gray;
+    float:left;
+}
+
+.poravnajforme
+{
+    display:inline-flex;
+    
+}

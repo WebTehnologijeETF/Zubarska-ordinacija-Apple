@@ -1,5 +1,6 @@
 <?php
 
+
 function validacijaIme($ime) 
 {
     $regexIme = "/\b([a-zA-Z]+)\b(\s\b([a-zA-Z]+)\b)*/"; 
