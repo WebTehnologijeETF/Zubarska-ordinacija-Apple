@@ -30,7 +30,7 @@ error_reporting(-1);
             ?>
             <?php if(isset($_POST['reset'])):?>
                 <?php 
-   require "Mail/Mail.php";
+   require "Mail-1.2.0/Mail/Mail.php";
    // Identify the sender, recipient, mail subject, and body
    $sender    = "sender@gmail.com";
    $recipient = "egazetic1@gmail.com";
