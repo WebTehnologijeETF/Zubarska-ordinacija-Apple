@@ -75,7 +75,7 @@ error_reporting(-1);
    }
    
 ?>
-     
+     <?php endif;?>
             
             <?php  if (!isset($_SESSION['username'])): ;?>
             
