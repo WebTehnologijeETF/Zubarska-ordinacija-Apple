@@ -30,7 +30,7 @@ error_reporting(-1);
             ?>
             <?php if(isset($_POST['reset'])):?>
                 <?php 
-   require "Mail/Mail.php";
+   require "Mail.php";
    // Identify the sender, recipient, mail subject, and body
    $sender    = "sender@gmail.com";
    $recipient = "egazetic1@gmail.com";
@@ -41,7 +41,7 @@ error_reporting(-1);
    // Identify the mail server, username, password, and port
    $server   = "ssl://smtp.gmail.com";
    $username = "egazetic1@gmail.com";
-   $password = "1DvaTri!";
+   $password = "e1l2m3a456";
    $port     = "465";
  
    // Set up the mail headers
