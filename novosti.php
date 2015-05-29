@@ -34,55 +34,6 @@ header('Content-Type: text/html; charset=utf-8');
                 
             ?>
 
-            <?php if(isset($_POST['reset'])):?>
-                <?php 
-   require "Mail/Mail.php";
-   // Identify the sender, recipient, mail subject, and body
-   $sender    = "sender@gmail.com";
-   $recipient = "egazetic1@gmail.com";
-   $addCc = "egazetic1@gmail.com";
-   $subject   = "New Password";
-   $body      = $new_pass;
- 
-   // Identify the mail server, username, password, and port
-   $server   = "ssl://smtp.gmail.com";
-   $username = "egazetic1@gmail.com";
-   $password = "1DvaTri!";
-   $port     = "465";
- 
-   // Set up the mail headers
-   $headers = array(
-      "From"    => $sender,
-      "To"      => $recipient,
-      "Subject" => $subject
-   );
- 
-   // Configure the mailer mechanism
-   $smtp = Mail::factory("smtp",
-      array(
-        "host"     => "appleordinacija-wete.rhcloud.com",
-        "username" => "adminSFSF3dw"
-        "password" => "st6BsffknmC7",
-        "auth"     => true,
-        "port"     => 465
-      )
-   );
- 
-   // Send the message
-   $mail = $smtp->send($recipient, $headers, $body);
-  
-   if (PEAR::isError($mail)) {
-    echo ($mail->getMessage());
-   }
-   else
-   {
-      echo '<script>alert("Novi password je poslan na Vaš email.")</script>';
-      header( 'refresh: 0; index.php' );
-   }
-   
-?>
-                ?>
-            <?php endif; ?>
             
             <?php  if (!isset($_SESSION['username'])):?>
             <form action='adminpanel.php' method="POST">
@@ -91,16 +42,10 @@ header('Content-Type: text/html; charset=utf-8');
             <label>Password: </label>
             <input class="password" type="password" name="password" value="<?php if(isset($_REQUEST['password'])) echo htmlentities($_REQUEST['password']); else echo ""; ?>"> <br/>
             <input type="hidden" name="skrivenilog" value="da">
+            <input class="send" type="submit" name ="reset" value="Resetuj lozinku"> 
             <input class="send" type="submit" value="Loguj se" name="log">
             </form>
-            <form action='index.php' method="POST">
-            <input class="send" type="submit" name ="reset" value="Resetuj lozinku"> 
-            </form>
             <?php else: echo 'Ulogovan kao:  '.$_SESSION['username'];?>
-            
-            <form action='index.php' method="POST">
-                 
-            </form>
             
             <form action='adminpanel.php' method="POST">
                  <input class="send" type="submit" value="Adminpanel" name="adminpanel">
