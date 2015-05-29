@@ -93,7 +93,7 @@ header('Content-Type: text/html; charset=utf-8');
             <input type="hidden" name="skrivenilog" value="da">
             <input class="send" type="submit" value="Loguj se" name="log">
             </form>
-            <form action='adminpanel.php' method="POST">
+            <form action='index.php' method="POST">
             <input class="send" type="submit" name ="reset" value="Resetuj lozinku"> 
             </form>
             <?php else: echo 'Ulogovan kao:  '.$_SESSION['username'];?>
