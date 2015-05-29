@@ -79,8 +79,8 @@ error_reporting(-1);
     
     <?php
         header('Content-Type: text/html; charset=utf-8');
-       // $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-$veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+        $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+        //$veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
         $veza->exec("set names utf8");
     ?>
@@ -94,9 +94,9 @@ $veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "
         // DODAJ KORISNIKA U BAZU
           if(isset($_POST['dodajkorisnikaubazu']) && isset($_POST['dodajkorisnikaubazuhidden']) && isset($_POST['korisnickoime']) && isset($_POST['lozinka']) && isset($_POST['emailkorisnik'])): 
             
-            //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+            $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
 
-            $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+            //$conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             $insertujkorisnika= $conn->prepare('INSERT INTO korisnik (username, password, email, administrator) VALUES(?, ?, ?, ?)');
             if (!$insertujkorisnika) 
              {
@@ -149,8 +149,8 @@ $veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "
            if(isset($_POST['obrisikorisnika']) && isset($_POST['obrisikorisnika2']))
                {
                    //BRISANJE KORISNIKA
-                    //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-               $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+        $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+        //       $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
                     $izbrisikorisnika = $conn->prepare('DELETE from korisnik WHERE id=?');
 
@@ -168,8 +168,8 @@ $veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "
                         $admin= htmlentities('1',ENT_QUOTES);
                    $id = htmlentities($_POST['spasipromjene2'],ENT_QUOTES);
                   
-                   //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-                $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+            $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+            //    $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
                    $spasipromjenekorisnika = $conn->prepare('UPDATE korisnik SET username=?, password=?, email=?, administrator=? WHERE id=?');
                      if (!$spasipromjenekorisnika) 
@@ -185,8 +185,8 @@ $veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "
         
         <?php 
             // CITANJE KORISNIKA IZ BAZE
-           // $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-$conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+         $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+        //$conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
             $ispisikorisnika = $conn->query("SELECT id, username, password, email, administrator FROM korisnik ORDER BY id");
 
@@ -236,8 +236,8 @@ $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", 
     // DODAVANJE KOMENTARA U BAZU
      if(isset($_POST['posaljikomentar']) && isset($_POST['komentar']) && strlen(preg_replace('/\s+/','',$_POST['komentar'])) > 0)
            {
-            //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-         $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+    $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+    //     $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
             $insertujkomentar= $conn->prepare('INSERT INTO komentar (vijest, autor, tekst, email) VALUES(?, ?, ?, ?)');
             if (!$insertujkomentar) 
@@ -269,8 +269,8 @@ $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", 
 
         else if(isset($_POST['obrisi'])) // BRISANJE KOMENTARA IZ BAZE
         {
-           // $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-            $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+         $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+        //    $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
             $izbrisikomentar = $conn->prepare('DELETE from komentar WHERE id=?');
             
