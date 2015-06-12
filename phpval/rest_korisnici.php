@@ -15,10 +15,13 @@ function rest_get($request, $data)
   
     $varijabla = $niz[count($niz)-1];
     
-   /* if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) && $varijabla == "korisnik")
+
+   if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) || (isset($_SESSION['admin']) && $_SESSION['admin'] == "false" ) )
     {
+        
         return;
-    }*/
+    }
+    
     
     $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
         //$conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
@@ -40,6 +43,13 @@ function rest_get($request, $data)
 
 function rest_post($request, $data) 
 {
+    
+   if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) || (isset($_SESSION['admin']) && $_SESSION['admin'] == "false" ) )
+    {
+        
+        return;
+    }
+    
       $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
     $username = htmlentities($data['username'],ENT_QUOTES);
     $lozinka = htmlentities($data['lozinka'],ENT_QUOTES);
@@ -69,6 +79,14 @@ function rest_post($request, $data)
 
 function rest_delete($request) 
 {
+    
+  if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) || (isset($_SESSION['admin']) && $_SESSION['admin'] == "false" ) )
+    {
+        
+        return;
+    }
+    
+    
     $niz = explode("/", $request);
   
     $varijabla = $niz[count($niz)-1];
@@ -86,6 +104,13 @@ function rest_delete($request)
 }
 function rest_put($request, $data) 
 {
+    
+  if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) || (isset($_SESSION['admin']) && $_SESSION['admin'] == "false" ) )
+    {
+        
+        return;
+    }
+    
     $username = htmlentities($data['username'],ENT_QUOTES);
     $lozinka = htmlentities($data['lozinka'],ENT_QUOTES);
     $administrator = htmlentities($data['administrator'],ENT_QUOTES);

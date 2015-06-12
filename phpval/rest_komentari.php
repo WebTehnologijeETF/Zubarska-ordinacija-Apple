@@ -69,6 +69,8 @@ function rest_get($request, $data)
 
 function rest_post($request, $data) 
 {
+
+    
     $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
         //$conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
     $insertujkomentar= $conn->prepare('INSERT INTO komentar (vijest, autor, tekst, email) VALUES(?, ?, ?, ?)');
@@ -99,6 +101,13 @@ function rest_post($request, $data)
 
 function rest_delete($request) 
 {
+    
+  if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) || (isset($_SESSION['admin']) && $_SESSION['admin'] == "false" ) )
+    {
+        
+        return;
+    }
+    
     $niz = explode("/", $request);
   
     $varijabla = $niz[count($niz)-1];
