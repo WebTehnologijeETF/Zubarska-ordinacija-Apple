@@ -80,8 +80,8 @@ if(isset($_SESSION['username']) && isset($_SESSION['admin']) && $_SESSION['admin
     
     <?php
         header('Content-Type: text/html; charset=utf-8');
-        $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-        //$veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+       // $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+        $veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
         $veza->exec("set names utf8");
     ?>
