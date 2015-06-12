@@ -34,55 +34,7 @@ header('Content-Type: text/html; charset=utf-8');
                 
             ?>
 
-            <?php if(isset($_POST['reset'])):?>
-                <?php 
-   require "Mail/Mail.php";
-   // Identify the sender, recipient, mail subject, and body
-   $sender    = "sender@gmail.com";
-   $recipient = "egazetic1@gmail.com";
-   $addCc = "egazetic1@gmail.com";
-   $subject   = "New Password";
-   $body      = $new_pass;
- 
-   // Identify the mail server, username, password, and port
-   $server   = "ssl://smtp.gmail.com";
-   $username = "egazetic1@gmail.com";
-   $password = "1DvaTri!";
-   $port     = "465";
- 
-   // Set up the mail headers
-   $headers = array(
-      "From"    => $sender,
-      "To"      => $recipient,
-      "Subject" => $subject
-   );
- 
-   // Configure the mailer mechanism
-   $smtp = Mail::factory("smtp",
-      array(
-        "host"     => "appleordinacija-wete.rhcloud.com",
-        "username" => "adminSFSF3dw"
-        "password" => "st6BsffknmC7",
-        "auth"     => true,
-        "port"     => 465
-      )
-   );
- 
-   // Send the message
-   $mail = $smtp->send($recipient, $headers, $body);
-  
-   if (PEAR::isError($mail)) {
-    echo ($mail->getMessage());
-   }
-   else
-   {
-      echo '<script>alert("Novi password je poslan na Vaš email.")</script>';
-      header( 'refresh: 0; index.php' );
-   }
-   
-?>
-                ?>
-            <?php endif; ?>
+            
             
             <?php  if (!isset($_SESSION['username'])):?>
             <form action='adminpanel.php' method="POST">
@@ -145,8 +97,8 @@ header('Content-Type: text/html; charset=utf-8');
     // DODAVANJE KOMENTARA U BAZU
      if(isset($_POST['posaljikomentar']) && isset($_POST['komentar']) && strlen(preg_replace('/\s+/','',$_POST['komentar'])) > 0)
            {
-           // $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-         $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+            $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+       //  $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
             $insertujkomentar= $conn->prepare('INSERT INTO komentar (vijest, autor, tekst, email) VALUES(?, ?, ?, ?)');
             if (!$insertujkomentar) 
@@ -178,8 +130,8 @@ header('Content-Type: text/html; charset=utf-8');
 
         else if(isset($_POST['obrisi'])) // BRISANJE KOMENTARA IZ BAZE
         {
-            //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-            $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "flocal");
+            $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+           // $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "flocal");
             
             $izbrisikomentar = $conn->prepare('DELETE from komentar WHERE id=?');
             
@@ -192,8 +144,8 @@ header('Content-Type: text/html; charset=utf-8');
         <?php   echo '<div class="content-naslov">Novosti</div>'; ?>
     <?php 
         // ISPIS VIJESTI
-        // $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-            $veza = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+         $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+         //   $veza = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
         $vijesti= $veza->query("select id, naslov, tekst, UNIX_TIMESTAMP(datum) datumvijesti, autor, detaljnije,slika from vijest order by datum desc");
 
@@ -217,32 +169,74 @@ header('Content-Type: text/html; charset=utf-8');
 
         foreach ($vijesti as $vijest): 
     
-        $naslov = $vijest['naslov'];
-        $tekst = $vijest['tekst'];
-        $detaljnije = $vijest['detaljnije'];
-        $autor = $vijest['autor'];
-        $datum = date('d.m.Y   H:i', $vijest['datumvijesti']);
-        $slika = $vijest['slika'];
-        $vijestiId = $vijest['id'];
+
+   $naslov = "'".$vijest['naslov']. "'";
+        $tekst =  "'".$vijest['tekst']. "'";
+        $detaljnije =  "'".$vijest['detaljnije']. "'";
+        $autor =  "'".$vijest['autor']. "'";
+        $datum =  "'".date('d.m.Y   H:i', $vijest['datumvijesti']). "'";
+        $slika =  "'".$vijest['slika']. "'";
+        $vijestiId =  "'".$vijest['id']."'";
         
             // ISPRAVITI U PREPARE!!!!
-          $komentari = $veza->query('select id, vijest, autor, UNIX_TIMESTAMP(datum) datumkomentara, tekst, email from komentar where vijest='.$vijestiId.' order by datumkomentara desc');
+          $komentari = $veza->query('select id, vijest, autor, UNIX_TIMESTAMP(datum) datumkomentara, tekst, email from komentar where vijest='.$vijest['id'].' order by datumkomentara desc');
         
         // ISPIS NOVOSTI
-             echo '<div class="novost">'.
+if($slika!=null)
+{ echo '<div class="novost">'.
             '<div class="naslov">'.
                  '<div>'.
                      '<div class="datum">'.
-                         '<div class="date-icon">▦</div>'.$datum.
+                         '<div class="date-icon">▦</div>'.
+                          "$datum".
                       '</div>'.              
             ' <div class="autor">'.$autor.'</div>'.
                   '</div>'.
                 $naslov.
             '</div>'.
             '<div class="tekst">'.
-               // "<div class='pic'><img height='300' width='600' src='$slika'></img></div>".
-                "$tekst".
-                 '<input class="detaljnije" value="Detaljnije" onclick="novostiajax('.$datum.','.$autor.','.$naslov.','.$slika.','.$tekst.','.$detaljnije.'); return false;" type="button"><br><br><br>';
+                "<div class='pic'><img height='300' width='600' src='$slika'></img></div>".
+                "$tekst"; 
+    }
+    else
+    {
+               echo '<div class="novost">'.
+            '<div class="naslov">'.
+                 '<div>'.
+                     '<div class="datum">'.
+                         '<div class="date-icon">▦</div>'.
+                          "$datum".
+                      '</div>'.              
+            ' <div class="autor">'.$autor.'</div>'.
+                  '</div>'.
+                $naslov.
+            '</div>'.
+            '<div class="tekst">'.
+                "$tekst"; 
+    }?>
+    
+          <style type="text/css">
+            .pic
+            {
+                height:300px;
+                width:600px;
+                margin:0 auto;
+                background-repeat:no-repeat;
+                background-size: contain;
+            }
+        </style>
+    
+    <input type="hidden" name="stil" value='<?php echo $slika; ?>'>
+<?php 
+if($vijest['detaljnije']!=null)
+{
+               
+    if($slika==null)
+    {
+        $slika = " " ;
+    }
+    echo '<input class="detaljnije" value="Detaljnije" onclick="novostiajax('.$datum.','.$autor.','.$naslov.','.$slika.','.$tekst.','.$detaljnije.'); return false;" type="button"><br><br><br>';
+}
    
             //BROJ KOMENTARA NEKE VIJESTI
             $broj = $veza->query('select count(*) broj from komentar where vijest='.$vijestiId);
@@ -250,22 +244,18 @@ header('Content-Type: text/html; charset=utf-8');
             $brojKomentara = $broj->fetch();
 ?>
     
-        <form action="novosti.php" method="POST">
-             <input name="prikazikomentar" type="submit" value=' Broj komentara: <?php echo $brojKomentara["broj"]; ?>'>
+        <form action="novosti.php" method="get">
+             <input name="prikazikomentar" type="submit" value='Broj komentara: <?php echo $brojKomentara["broj"]; ?>'>
              <input name="vijesti" type="hidden" value='<?php echo htmlentities($vijest['id'], ENT_QUOTES);?>'>
         </form>
 
         <?php
                 echo '</div><br/>';
 
-
-            // Kada kliknemo na broj komentara
-        if((isset($_POST['vijesti']) && htmlentities($_POST['vijesti'], ENT_QUOTES) == $vijestiId) || ((isset($_POST['vijestik']) && htmlentities($_POST['vijestik'], ENT_QUOTES) == $vijestiId)) || ((isset($_POST['idvijesti']) && htmlentities($_POST['idvijesti'], ENT_QUOTES) == $vijestiId)) || ( isset($_POST['obrisi']) && (isset($_POST['vijesti']) && htmlentities($_POST['vijesti'], ENT_QUOTES) == $vijestiId) || ((isset($_POST['vijestik']) && htmlentities($_POST['vijestik'], ENT_QUOTES) == $vijestiId)) || ((isset($_POST['idvijesti']) && htmlentities($_POST['idvijesti'], ENT_QUOTES) == $vijestiId)) ) ):
-            // TO DO : validacija imena, komentara na serverskoj strani! 
-            // VELICINA NEKA ZAVISI OD VELICINE VARCHARA-a u phpmyadmin
+             if((isset($_POST['prikazikomentar']) && htmlentities($_POST['prikazikomentar'], ENT_QUOTES) == $vijestiId) || (isset($_POST['vijesti']) && htmlentities($_POST['vijesti'], ENT_QUOTES) == $vijestiId) || ((isset($_POST['vijestik']) && htmlentities($_POST['vijestik'], ENT_QUOTES) == $vijestiId)) || ((isset($_POST['idvijesti']) && htmlentities($_POST['idvijesti'], ENT_QUOTES) == $vijestiId)) || ( isset($_POST['obrisi']) && (isset($_POST['vijesti']) && htmlentities($_POST['vijesti'], ENT_QUOTES) == $vijestiId) || ((isset($_POST['vijestik']) && htmlentities($_POST['vijestik'], ENT_QUOTES) == $vijestiId)) || ((isset($_POST['idvijesti']) && htmlentities($_POST['idvijesti'], ENT_QUOTES) == $vijestiId)) ) ):
 ?>
-
-            <form class="formaadmin" action="novosti.php" method="POST">
+<?php alsjdfoiawekdfjiokdfjiodkmfijkodmfk ?>
+            <form class="formaadmin" action="adminpanel.php" method="POST">
                     <div class="naslovforme">Postavite komentar na vijest:</div><br>
                     <label>Ime</label><br>
                     <input name="ime" class="ime" value='<?php if(isset($_POST['ime'])) echo htmlentities($_POST['ime'],ENT_QUOTES);?>'><br>
@@ -302,7 +292,6 @@ header('Content-Type: text/html; charset=utf-8');
                     <tr><td class="centaremail">Email: <?php echo $komentarEmail;?> </td></tr>
                     <tr><td colspan="2" class="centarlabela">Komentar:</td></tr>
                     <tr><td colspan="2" class="centar"> <?php echo $komentarText;?> </td></tr>
-                    <tr></tr>
                 </table><br><br>
         <?php
         endforeach;
@@ -311,7 +300,7 @@ header('Content-Type: text/html; charset=utf-8');
         ?>
 
     <?php
-
+/*
 $nizdatoteka= array();
 foreach (new DirectoryIterator('./novosti') as $file) {
     if($file->isDot()) continue;
@@ -416,7 +405,10 @@ foreach (new DirectoryIterator('./novosti') as $file) {
        '</div><br><br><br><br>';
 
 
-    }
+    }*/
     ?>
+    <div class="content">
+    
+    </div>
     </body>
 </html>
