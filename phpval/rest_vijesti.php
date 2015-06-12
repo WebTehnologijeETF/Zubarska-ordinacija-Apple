@@ -24,7 +24,7 @@ function rest_get($request, $data)
    
     if($varijabla=="vijesti")
     {
-         $vijesti= $conn->query("select id, naslov, tekst, UNIX_TIMESTAMP(datum) datumvijesti, autor, detaljnije,slika from vijest order by datum desc");
+         $vijesti= $conn->query("select id, naslov, tekst,datum datumvijesti, autor, detaljnije,slika from vijest order by datum desc");
 
              if (!$vijesti) 
              {
