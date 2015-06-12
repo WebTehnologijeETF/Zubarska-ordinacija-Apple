@@ -116,7 +116,7 @@ error_reporting(-1);
                 </ul>
             </li>
             
-			<li class="li-1"><a href="" onclick="otvoriajax('novosti'); return false;">Novosti</a></li>
+			<li class="li-1"><a href="" onclick="ajaxgetvijesti('ispisivijesti'); return false;">Novosti</a></li>
 			<li class="li-1"><a href="" onclick="otvoriajax('o_nama'); return false;">O nama</a></li>
         
 			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">

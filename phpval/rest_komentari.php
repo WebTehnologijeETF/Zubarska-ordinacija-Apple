@@ -8,6 +8,8 @@ function zag()
     header('Access-Control-Allow-Origin: *');
 }
 
+
+
 //REST funkcije za manipulaciju podacima
 function rest_get($request, $data) 
 {
@@ -44,14 +46,24 @@ function rest_get($request, $data)
     {
         $vijestiId = $varijabla;
        $komentari = $conn->query("SELECT id, vijest, autor, datum, vijest, tekst, email  FROM komentar WHERE vijest=".$vijestiId." ORDER BY datum desc");
+        
             if (!$komentari) 
              {
                   $greska = $conn->errorInfo();
                   print "SQL greška: " . $greska[2];
                   exit();
              }
-         $rezultat = "{ \"komentari\": ".json_encode( $komentari->fetchAll())."}";
-          echo $rezultat;
+       //  $rezultat = "{ \"komentari\": ".json_encode( $komentari->fetchAll())."}";
+       
+        
+    if(isset($_SESSION['admin']) && $_SESSION['admin']!="true")
+       $istina  = false;
+       else 
+       $istina  = true;
+       
+        $del = array("administrator" => $istina , "komentari" => json_encode( $komentari->fetchAll()));
+       
+          echo json_encode($del);
     }
 }
 
@@ -105,7 +117,7 @@ function rest_delete($request)
 
 function rest_put($request, $data) 
 {
-
+    
 }
 
 function rest_error($request) 
@@ -115,6 +127,7 @@ function rest_error($request)
     header("{$_SERVER['SERVER_PROTOCOL']} 404 Not Found");
     print $json;
 }
+
 
 $method  = $_SERVER['REQUEST_METHOD'];
 $request = $_SERVER['REQUEST_URI'];

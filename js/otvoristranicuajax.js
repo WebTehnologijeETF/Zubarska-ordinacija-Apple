@@ -91,12 +91,14 @@ function ajaxgetkomentari(varijabla,idVijesti,k)
             obj = document.getElementsByClassName("ispiskomentara")[k];
             if (ajax.readyState == 4 && ajax.status == 200)
             {
-              console.log(ajax.responseText);
+             // console.log(ajax.responseText);
                 var x = JSON.parse(ajax.responseText);
                 
                    obj.innerHTML ="</br>";
-                    x = x.komentari;
+                    x_kom= x.komentari;
+                   x_admin= x.administrator;
                 
+                 x = JSON.parse(x_kom);
                 var forma = '<div class="formaadmin">'+
                     '<div class="naslovforme">Postavite komentar na vijest:</div></br>'+
                     '<label>Ime</label></br>'+
@@ -115,7 +117,13 @@ function ajaxgetkomentari(varijabla,idVijesti,k)
                      var myString = '<table class="tabelaadmin">'+
                          '<tr>'+
                          '<td class="lijevo">' + x[i].datum +'</td>'+
-                         '<td class="desno" rowspan="2"><a href="mailto:'+x[i].email+'">'+x[i].autor+'</a></td>'+
+                         '<td class="desno" rowspan="2">';
+                         if(x[i].email != "")
+                         myString +='<a href="mailto:'+x[i].email+'">'+x[i].autor+'</a>';
+                        else 
+                            myString +=x[i].autor;
+                        
+                        myString+='</td>'+
                          '</tr>'+
                          '<tr>'+
                          '<td class="centaremail">Email: '+x[i].email+'</td>'+
@@ -127,10 +135,17 @@ function ajaxgetkomentari(varijabla,idVijesti,k)
                          '<td colspan="2" class="centar">'+x[i].tekst+'</td>'+
                          '</tr>'+
                          '<tr>'+
-                          '<td><input type="button" value="Izbrisi" onclick=\'ajaxdeletekomentari(\"izbrisikomentar\",'+x[i].id+','+k+')\' >'+
-                         '</tr>'+
-                         '</table></br>';
+                          '<td>';
                         
+                        if(x_admin == "true") console.log("admin="+x_admin);
+                        if(x_admin == "true")
+                        {
+                            myString+='<input type="button" value="Izbrisi" onclick=\'ajaxdeletekomentari(\"izbrisikomentar\",'+x[i].id+','+k+')\' >';
+                        }
+                         myString += '</tr>'+
+                         '</table>';
+                       
+                        myString +="<br/>";
                     obj.innerHTML+=myString;
                     }            
             }
