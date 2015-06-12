@@ -99,15 +99,19 @@ function ajaxgetkomentari(varijabla,idVijesti,k)
                    x_admin= x.administrator;
                 
                  x = JSON.parse(x_kom);
-                var forma = '<div class="formaadmin">'+
-                    '<div class="naslovforme">Postavite komentar na vijest:</div></br>'+
+                var forma = '<div class="formaadmin">';
+                    console.log(x_admin);
+                
+                    forma+='<div class="naslovforme">Postavite komentar na vijest:</div></br>'+
                     '<label>Ime</label></br>'+
                     '<input name="ime" class="ime"></br>'+
                     '<label>Email</label></br>'+
                     '<input name="email" class="email"></br>'+
-                    '<label>Komentar</label><br>'+
-                    '<textarea name="komentar" class="komentar"></textarea></br>'+
-                    '<input type="button" name="posaljikomentar" class="posalji" onclick="ajaxpostkomentar(\'dodajkomentar\','+idVijesti+','+k+')" value="Postavi komentar"><br></div>';
+                    '<label>Komentar</label><br>';
+                
+                
+                    forma+='<textarea name="komentar" class="komentar"></textarea></br>'+
+                    '<input type="button" name="posaljikomentar" class="posalji" onclick="ajaxpostkomentar(\'dodajkomentar\','+idVijesti+','+k+','+x_admin+')" value="Postavi komentar"><br></div>';
                 obj.innerHTML+=forma;
                 
                 
@@ -137,11 +141,9 @@ function ajaxgetkomentari(varijabla,idVijesti,k)
                          '<tr>'+
                           '<td>';
                         
-                        if(x_admin == "true") console.log("admin="+x_admin);
-                        if(x_admin == "true")
-                        {
+                        
                             myString+='<input type="button" value="Izbrisi" onclick=\'ajaxdeletekomentari(\"izbrisikomentar\",'+x[i].id+','+k+')\' >';
-                        }
+                        
                          myString += '</tr>'+
                          '</table>';
                        
@@ -192,19 +194,25 @@ function ajaxgetbrojkomentara(varijabla,idVijesti,k)
     
 }
 
-function ajaxpostkomentar(varijabla,idVijesti,k)
+function ajaxpostkomentar(varijabla,idVijesti,k,admin)
 {
         var ajax = new XMLHttpRequest();
     
-        var ime = document.getElementsByClassName('ime')[0].value;
-        var email = document.getElementsByClassName('email')[0].value;
+        var ime = " ";
+        var email = " ";
+       /* if(admin == false)
+        {*/
+            ime = document.getElementsByClassName('ime')[0].value;
+            email = document.getElementsByClassName('email')[0].value;
+       // }
         var komentar = document.getElementsByClassName('komentar')[0].value;
+        
         console.log(ime +" " + email +" " +  komentar);
         ajax.onreadystatechange = function() 
         {
             if (ajax.readyState == 4 && ajax.status == 200)
             {
-                //console.log(ajax.responseText);
+                console.log(ajax.responseText);
                  var x = JSON.parse(ajax.responseText);
                  x = x.dodajkomentar;
                  if(x === "true")

@@ -18,10 +18,7 @@ function rest_get($request, $data)
     $varijabla = $niz[count($niz)-1];
     $parametri = $niz[count($niz)-2];
     
-   /* if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) && $varijabla == "korisnik")
-    {
-        return;
-    }*/
+
     
         $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
         //$conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
@@ -47,15 +44,13 @@ function rest_get($request, $data)
         $vijestiId = $varijabla;
        $komentari = $conn->query("SELECT id, vijest, autor, datum, vijest, tekst, email  FROM komentar WHERE vijest=".$vijestiId." ORDER BY datum desc");
         
-            if (!$komentari) 
-             {
-                  $greska = $conn->errorInfo();
-                  print "SQL greška: " . $greska[2];
-                  exit();
-             }
-       //  $rezultat = "{ \"komentari\": ".json_encode( $komentari->fetchAll())."}";
-       
-        
+    if (!$komentari) 
+     {
+          $greska = $conn->errorInfo();
+          print "SQL greška: " . $greska[2];
+          exit();
+     }
+
     if(isset($_SESSION['admin']) && $_SESSION['admin']!="true")
        $istina  = false;
        else 
@@ -70,7 +65,6 @@ function rest_get($request, $data)
 function rest_post($request, $data) 
 {
 
-    
     $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
         //$conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
     $insertujkomentar= $conn->prepare('INSERT INTO komentar (vijest, autor, tekst, email) VALUES(?, ?, ?, ?)');
@@ -82,8 +76,19 @@ function rest_post($request, $data)
           exit();
      }
     
+    
     $ime = htmlentities($data['ime'], ENT_QUOTES);
     $email = htmlentities($data['email'], ENT_QUOTES);
+  /*  if(isset($_SESSION['username'])) 
+    {
+        $ime = $_SESSION['username'];*/
+      /*  $ispisikorisnika = $conn->prepare("SELECT id, username, password, email, administrator FROM korisnik where username=".$ime);
+        $rezultat = $ispisikorisnika->fetchAll();
+        $email = $rezultat['email'][0];*/
+     /*   $email = "email@email.com";
+    }*/
+    
+    
     $komentar = htmlentities($data['komentar'], ENT_QUOTES);
     $idVijesti = htmlentities($data['idvijesti'], ENT_QUOTES);
 
