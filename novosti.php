@@ -43,16 +43,10 @@ header('Content-Type: text/html; charset=utf-8');
             <label>Password: </label>
             <input class="password" type="password" name="password" value="<?php if(isset($_REQUEST['password'])) echo htmlentities($_REQUEST['password']); else echo ""; ?>"> <br/>
             <input type="hidden" name="skrivenilog" value="da">
+            <input class="send" type="submit" name ="reset" value="Resetuj lozinku"> 
             <input class="send" type="submit" value="Loguj se" name="log">
             </form>
-            <form action='index.php' method="POST">
-            <input class="send" type="submit" name ="reset" value="Resetuj lozinku"> 
-            </form>
             <?php else: echo 'Ulogovan kao:  '.$_SESSION['username'];?>
-            
-            <form action='index.php' method="POST">
-                 
-            </form>
             
             <form action='adminpanel.php' method="POST">
                  <input class="send" type="submit" value="Adminpanel" name="adminpanel">

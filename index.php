@@ -91,6 +91,7 @@ error_reporting(-1);
             <input style="margin-top:-55px; margin-right:150px;" class="send" type="submit" name ="reset" value="Resetuj lozinku">
             </form>
             
+            
             <?php else: echo 'Ulogovan kao:  '.$_SESSION['username'];?>
            
             <form action='index.php' method="POST">
