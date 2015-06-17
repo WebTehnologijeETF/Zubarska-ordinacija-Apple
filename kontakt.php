@@ -5,8 +5,10 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
      <script src="js/kontaktvalidacija.js"></script>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    
+    <script src="js/ajax_poruke.js"></script>
 </head>
-<body>
+<body >
   <div class="content-naslov">
                 Kontakt
          </div>
@@ -17,26 +19,11 @@
     <!-- Sve je ispravno -->
     <?php if(isset($_POST['ime']) && isset($_POST['email']) && isset($_POST['telefon']) && isset($_POST['message']) && validacijaIme($_POST['ime']) && validacijaEmail($_POST['email']) && validacijaTelefon($_POST['telefon']) && validacijaPoruka($_POST['message'])) : ?>
     
-    <?php echo "Provjerite da li ste ispravno popunili kontakt formu!";
-
-        echo "Uneseni podaci: hehe.php";
-        echo $_POST['ime'];
-        echo $_POST['email'];
-        echo $_POST['telefon'];
-        echo $_POST['message'];
-    ?>
+    <?php echo "Poruka uspjesno poslana!";?>
+  
     
         <?php else: ?>
 		<form class="kontakt-forma" action='ispravankontakt.php' method="POST" onSubmit="return validate();">
-           <div id="testopcina"><label>Općina:</label><br>
-            <input type="text" class="opcina" onChange="enablebutton()">
-            <label>Mjesto:</label>
-            <input type="text" class="mjesto" onChange="enablebutton()">
-            <input class="send" type="button" value="Provjeri" onclick="provjeriajax()" disabled>
-            <div id="tekst"></div>
-            <div id="tekst2">
-            Za provjeru potrebno unijeti i općinu i mjesto.</div>
-             </div> <br><br><br><br><br>
             
             <!-- Ime i prezime -->
 			<label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label><div class="prikazime"></div>
@@ -47,7 +34,7 @@
             
             <!-- Email -->
 			<label class="zvjezdica">*&nbsp;</label><label>Email:&nbsp;</label><div class="prikazemail"></div>
-			<input class="email" type="email" onChange="enableUnosPoruke()" name="email" value="<?php if(isset($_REQUEST['email'])) echo $_REQUEST['email']; else echo ""; ?>" novalidate><br><br>
+			<input class="email" type="text" name="email" value="<?php if(isset($_REQUEST['email'])) echo $_REQUEST['email']; else echo ""; ?>" ><br><br>
             <div class="greskaemail"><?php if(isset($_POST['email'])) { if(validacijaEmail($_POST['email'])) { echo ""; } else { echo "greska";} }  ?></div>	
             <br>
             
@@ -57,19 +44,9 @@
             <div class="greskatelefon"><?php if(isset($_POST['telefon'])) { if(validacijaTelefon($_POST['telefon'])) { echo ""; } else { echo "greska";} }  ?></div>
             <br>
             
-            <!-- Godiste -->
-            <label>Godiste:</label><br>
-            <input type="number" name="quantity" min="1960" max="2000" class="godiste"><br>
-            <br>
-            
-            <!-- Hitno -->
-            <label>Hitno:</label><br>
-            <input type="range" name="points" min="0" max="10"><br>
-            <br>
-            
             <!-- Poruka -->
 			<label class="zvjezdica">*&nbsp;</label><label>Poruka:&nbsp;</label><div class="prikazporuka"></div>
-            <textarea class="message"  name="message" disabled="enabled"> <?php if(isset($_REQUEST['message'])) echo $_REQUEST['message']; else echo ""; ?> </textarea><br>
+            <textarea class="message"  name="message"> <?php if(isset($_REQUEST['message'])) echo $_REQUEST['message']; else echo ""; ?> </textarea><br>
             <div class="greskaporuka"><?php if(isset($_POST['message'])) { if(validacijaPoruka($_POST['message'])) { echo ""; } else { echo "greska";} } ?></div>
             <br>
             <br>

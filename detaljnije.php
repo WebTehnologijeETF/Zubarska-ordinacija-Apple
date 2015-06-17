@@ -50,8 +50,8 @@
             <?php echo $tekst.'</div>'.'<div class="tekst">'.$detaljnije.'</div>'.
             '<div class="border-bottom"></div>'.
        '</div>';
- 
     ?> 
+    
 </body>
 </html>
     

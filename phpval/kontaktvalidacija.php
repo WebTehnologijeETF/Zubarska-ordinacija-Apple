@@ -40,4 +40,6 @@ function validacijaPoruka($poruka)
     return true;
 }
 
+
+
 ?>

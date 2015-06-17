@@ -8,16 +8,19 @@ function zag()
     header('Access-Control-Allow-Origin: *');
 }
 
+function napraviKonekciju()
+{
+    $conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+       // $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+    return $conn;
+}
 //REST funkcije za manipulaciju podacima
 function rest_get($request, $data) 
 {
     $niz = explode("/", $request);
     $varijabla = $niz[count($niz)-1];
     
-  
-    
-    //$conn = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-        $conn = new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+  $conn = napraviKonekciju();
    
     if($varijabla=="vijesti")
     {

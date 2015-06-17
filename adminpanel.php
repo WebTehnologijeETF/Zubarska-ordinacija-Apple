@@ -14,6 +14,11 @@ error_reporting(-1);
     <script src="js/pomjeriscroll.js"></script>
     <script src="js/otvoristranicuajax.js"></script>
     <script src="js/kontaktvalidacija.js"></script>
+    <script src="js/ajax_komentar.js"></script>
+    <script src="js/ajax_korisnik.js"></script>
+    <script src="js/ajax_vijesti.js"></script>
+    <script src="js/ajax_poruke.js"></script>
+    <script src="js/kontakt.js"></script>
 </head>
 
 <body  <?php if(isset($_POST['username']) && isset($_POST['password'])) :   
@@ -50,18 +55,27 @@ error_reporting(-1);
             <label>Password: </label>
             <input class="password" type="password" name="password" value="<?php if(isset($_POST['password'])) echo htmlentities($_POST['password'], ENT_QUOTES); else echo ""; ?>"> <br/>
                 <input type="hidden" name="skrivenilog" value="da">
-            <input class="send" type="submit" name ="reset" value="Resetuj lozinku"> <input class="send" type="submit" value="Loguj se" name="log">
+            <input class="send" type="submit" value="Loguj se" name="log">
             </form>
             <?php else:?>
-           <table>
+           <table class="meniadmin">
                <tr>
                 <?php  echo 'Prijavljeni ste kao:  '.$_SESSION['username']; ?></tr>
-                <tr><td>
-                     <input class="send" type="submit" value="Dodaj korisnika" name="dodajkorisnika" onclick="ajaxgetkorisnik('ispisikorisnika')">
+                <tr>
+                      <td><form action='index.php' method="POST"> 
+                     <input class="send" type="submit" value="Nazad na početnu" name="nazad">
+                    </form></td>
+                <td>
+                     <input class="send" type="submit" value="Poruke" name="dodajporuku" onclick="ajaxgetporuke()">
+                </td>
+                    <td>
+                     <input class="send" type="submit" value="Korisnici" name="dodajkorisnika" onclick="ajaxgetkorisnik('ispisikorisnika')">
+                </td>
+                    <td>
+                     <input class="send" type="submit" value="Novosti"  onclick="ajaxgetvijesti('ispisivijesti')">
                 </td>
                 <td><form action='index.php' method="POST"> 
-                    <input class="send" type="submit" value="Log out" name="logout">
-                     <input class="send" type="submit" value="Nazad na stranicu" name="nazad">
+                    <input class="send" type="submit" value="Izađi" name="logout">
                     </form></td></tr>
             </table>
             
@@ -80,8 +94,8 @@ if(isset($_SESSION['username']) && isset($_SESSION['admin']) && $_SESSION['admin
     
     <?php
         header('Content-Type: text/html; charset=utf-8');
-       // $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
-        $veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
+        $veza = new PDO("mysql:dbname=appleordinacija;host=localhost;charset=utf8", "apple", "apple");
+     //   $veza= new PDO("mysql:dbname=appleordinacija;host=127.2.117.130;charset=utf8", "adminSFSF3dw", "st6BsffknmC7");
             
         $veza->exec("set names utf8");
     ?>

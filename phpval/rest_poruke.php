@@ -20,36 +20,10 @@ function napraviKonekciju()
 //REST funkcije za manipulaciju podacima
 function rest_get($request, $data) 
 {
-    $niz = explode("/", $request);
-  
-    $varijabla = $niz[count($niz)-1];
-    $parametri = $niz[count($niz)-2];
-    
-    
-  $conn= napraviKonekciju();
-    
- if($parametri=="brojkomentara")
-    {
-        $vijestiId = $varijabla;  
+    $conn = napraviKonekciju();
+       $poruke = $conn->query("SELECT id, korisnik, email, telefon, poruka, datum, procitana FROM poruka ORDER BY datum desc");
         
-        $komentaribroj = $conn->prepare('select id, vijest, autor, UNIX_TIMESTAMP(datum) datumkomentara, tekst, email from komentar where vijest='.$vijestiId);
-            if (!$komentaribroj) 
-             {
-                  $greska = $conn->errorInfo();
-                  print "SQL greška: " . $greska[2];
-                  exit();
-             }
-        $komentaribroj->execute();
-        $brojac = $komentaribroj->rowCount();
-        $brojkomentara = "{ \"brojkomentara\": ".json_encode($brojac)."}";
-        echo $brojkomentara;
-    }
-    else if($parametri == "komentari")
-    {
-        $vijestiId = $varijabla;
-       $komentari = $conn->query("SELECT id, vijest, autor, datum, vijest, tekst, email  FROM komentar WHERE vijest=".$vijestiId." ORDER BY datum desc");
-        
-    if (!$komentari) 
+    if (!$poruke) 
      {
           $greska = $conn->errorInfo();
           print "SQL greška: " . $greska[2];
@@ -61,18 +35,18 @@ function rest_get($request, $data)
        else 
        $istina  = true;
        
-        $del = array("administrator" => $istina , "komentari" => json_encode( $komentari->fetchAll()));
+        $del = array("administrator" => $istina , "poruke" => json_encode( $poruke->fetchAll()));
        
           echo json_encode($del);
-    }
-}
+ }
+
 
 function rest_post($request, $data) 
 {
-$conn = napraviKonekciju();
-    $insertujkomentar= $conn->prepare('INSERT INTO komentar (vijest, autor, tekst, email) VALUES(?, ?, ?, ?)');
+    $conn = napraviKonekciju();
+    $insertujporuku= $conn->prepare('INSERT INTO poruka (korisnik,email,telefon,poruka,procitana) VALUES(?, ?, ?, ?, ?)');
     
-    if (!$insertujkomentar) 
+    if (!$insertujporuku) 
      {
           $greska = $conn->errorInfo();
           print "SQL greška: " . $greska[2];
@@ -80,28 +54,20 @@ $conn = napraviKonekciju();
      }
     
     
-    $ime = htmlentities($data['ime'], ENT_QUOTES);
+    $telefon = htmlentities($data['telefon'], ENT_QUOTES);
     $email = htmlentities($data['email'], ENT_QUOTES);
-  /*  if(isset($_SESSION['username'])) 
-    {
-        $ime = $_SESSION['username'];*/
-      /*  $ispisikorisnika = $conn->prepare("SELECT id, username, password, email, administrator FROM korisnik where username=".$ime);
-        $rezultat = $ispisikorisnika->fetchAll();
-        $email = $rezultat['email'][0];*/
-     /*   $email = "email@email.com";
-    }*/
-    
-    
-    $komentar = htmlentities($data['komentar'], ENT_QUOTES);
-    $idVijesti = htmlentities($data['idvijesti'], ENT_QUOTES);
+    $poruka = htmlentities($data['poruka'], ENT_QUOTES);
+    $korisnik = htmlentities($data['korisnik'], ENT_QUOTES);
+    $procitana = htmlentities($data['procitana'], ENT_QUOTES);
 
-    $insertujkomentar->bindParam(1,$idVijesti);
-    $insertujkomentar->bindParam(2,$ime);
-    $insertujkomentar->bindParam(3,$komentar);
-    $insertujkomentar->bindParam(4,$email);
-    $insertujkomentar->execute();
+    $insertujporuku->bindParam(1,$korisnik);
+    $insertujporuku->bindParam(2,$email);
+    $insertujporuku->bindParam(3,$telefon);
+    $insertujporuku->bindParam(4,$poruka);
+    $insertujporuku->bindParam(5,$procitana);
+    $insertujporuku->execute();
     
-    $unos = array('dodajkomentar'=>'true');
+    $unos = array('dodajporuku'=>'true');
     $rezultat = json_encode($unos);
     echo $rezultat;
 }
@@ -122,18 +88,45 @@ function rest_delete($request)
     
     $conn= napraviKonekciju();
             
-        $izbrisikomentar = $conn->prepare('DELETE from komentar WHERE id=?');
+        $izbrisikomentar = $conn->prepare('DELETE from poruka WHERE id=?');
         $izbrisikomentar->bindValue(1, $varijabla, PDO::PARAM_INT);
         $izbrisikomentar->execute();
         
-        $del = array('obrisikomentar'=>'true');
+        $del = array('obrisiporuku'=>'true');
         $rezultat = json_encode( $del);
         echo $rezultat;
 }
 
 function rest_put($request, $data) 
 {
+      if(!isset($_SESSION['username']) || !isset($_SESSION['admin']) || (isset($_SESSION['admin']) && $_SESSION['admin'] == "false" ) )
+    {
+        
+        return;
+    }
     
+    $telefon = htmlentities($data['telefon'], ENT_QUOTES);
+    $email = htmlentities($data['email'], ENT_QUOTES);
+    $poruka = htmlentities($data['poruka'], ENT_QUOTES);
+    $korisnik = htmlentities($data['korisnik'], ENT_QUOTES);
+    $procitana = htmlentities($data['procitana'], ENT_QUOTES);
+    $id = htmlentities($data['id'], ENT_QUOTES);
+    
+    $conn = napraviKonekciju();
+    
+   $spasipromjeneporuke = $conn->prepare('UPDATE poruka SET telefon=?, email=?, poruka=?, korisnik=?, procitana=? WHERE id=?');
+         if (!$spasipromjeneporuke) 
+         {
+              $greska = $conn->errorInfo();
+              print "SQL greška: " . $greska[2];
+              exit();
+         }
+                
+    $spasipromjeneporuke->execute(array($telefon, $email, $poruka, $korisnik, $procitana, $id)); 
+    
+    $del = array('editujporuku'=>'true');
+        $rezultat = json_encode($del);
+        echo $rezultat;
 }
 
 function rest_error($request) 

@@ -3,23 +3,6 @@ var regexTelefon = /^\+?(\d{5})[-| ]?(\d{3})[-| ]?(\d{3})$/;
 var regexEmail = /\b[a-zA-Z0-9+_-]+@+[a-zA-Z]+([.][a-z]+)*\b$/;
 
 
-function enablebutton()
-{
-    var opcina = document.getElementsByClassName('opcina')[0];
-    var button = document.getElementsByClassName('send')[0];
-    var mjesto = document.getElementsByClassName('mjesto')[0];
-    
-   if(opcina.value.length > 0 && mjesto.value.length > 0)
-    {
-      button.disabled = false;
-    }
-    else 
-    {
-      button.disabled = true;
-      document.getElementById("tekst").innerHTML="";
-    } 
-}
-
  function provjeriajax()
     {
         var opcina = document.getElementsByClassName('opcina')[0];
@@ -55,8 +38,6 @@ function validate()
     var imePrezime = document.getElementsByClassName('name')[0];
     var email = document.getElementsByClassName('email')[0];
     var telefon = document.getElementsByClassName('telefon')[0];
-    var godiste = document.getElementsByClassName('godiste')[0];
-    var hitnost = document.getElementsByClassName('hitnost')[0];
     var poruka = document.getElementsByClassName('message')[0];
     
     var brojac = 0;
@@ -168,7 +149,9 @@ function validate()
     
     console.log(brojac);
     if(brojac== -4)
-    return true;
+    {
+        return true;
+    }
     
     return false;
 }
@@ -181,15 +164,3 @@ function vratiBorder(objekat)
      objekat.style.borderRight = "thin solid #E0E0E0 ";
 }
 
-function enableUnosPoruke()
-{
-   var poruka = document.getElementsByClassName('message')[0];
-    var email = document.getElementsByClassName('email')[0];
-    var niz = regexEmail.exec(email.value);
-    var s = poruka.value;
-    
-    if(s.trim().length == 0  || niz == null)
-        poruka.disabled = false;
-    else 
-        poruka.disabled = true;    
-}

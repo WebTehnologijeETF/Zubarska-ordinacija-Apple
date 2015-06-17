@@ -87,9 +87,9 @@ header('Content-Type: text/html; charset=utf-8');
 	</div>
     <?php endif; ?>
     
-    
+   
     <div class="content">
-    
+       
     </div>
     </body>
 </html>

@@ -4,14 +4,46 @@
 	<title>Ordinacija</title>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <script src="js/opadajucimeni.js"></script>
-    <script src="js/pomjeriscroll.js"></script>
-    <script src="js/otvoristranicuajax.js"></script>
-    <script src="js/kontaktvalidacija.js"></script>
 </head>
-<body>
-	<div class="header">
-		<div class="number">+387 33 555 555</div>
+<body >
+    <div class="header">
+		<div class="login">
+            
+            <?php 
+                if(isset($_REQUEST['logout']))
+                {
+                    unset($_SESSION['username']);
+                    session_unset();
+                }
+                
+            ?>
+         
+            <?php  if (!isset($_SESSION['username'])): ;?>
+            
+            <form action='adminpanel.php' method="POST">
+            <label class="username">Username: </label>
+            <input type="text" name="username" value="<?php if(isset($_REQUEST['username'])) echo htmlentities($_REQUEST['username']); else echo ""; ?>"><br/>
+            <label>Password: </label>
+            <input class="password" type="password" name="password" value="<?php if(isset($_REQUEST['password'])) echo htmlentities($_REQUEST['password']); else echo ""; ?>"> <br/>
+                <input type="hidden" name="skrivenilog" value="da">
+                <input class="send" type="submit" value="Loguj se" name="log">
+            </form>
+             <form action='index.php' method="POST">
+            <input style="margin-top:-55px; margin-right:150px;" class="send" type="submit" name ="reset" value="Resetuj lozinku">
+            </form>
+            
+            
+            <?php else: echo 'Ulogovan kao:  '.$_SESSION['username'];?>
+           
+            <form action='index.php' method="POST">
+                 <input class="send" type="submit" value="Izađi" name="logout">
+            </form>
+            <form style="margin-top:-55px; margin-right:150px;" action='adminpanel.php' method="POST">
+                 <input class="send" type="submit" value="Adminpanel" name="adminpanel">
+            </form>
+            <?php endif; ?>
+         
+        </div>
 		<div class="logopic"></div>
 		<div class="logo"></div>
 		<ul class="meni">
@@ -25,7 +57,7 @@
                 </ul>
             </li>
             
-			<li class="li-1"><a href="" onclick="otvoriajax('novosti'); return false;">Novosti</a></li>
+			<li class="li-1"><a href="" onclick="ajaxgetvijesti('ispisivijesti'); return false;">Novosti</a></li>
 			<li class="li-1"><a href="" onclick="otvoriajax('o_nama'); return false;">O nama</a></li>
         
 			<li class="li-1" onmouseover="novosti(true,2)" onmouseout="novosti(false,2)">
@@ -42,124 +74,71 @@
 		</ul>
 		<div class="headerpic"></div>
 	</div>
-
-	<div class="content">
-
+    
+    <div class='content'> 
   <div class="content-naslov">
                 Kontakt
          </div>
         <br>
     
     <?php include("phpval/kontaktvalidacija.php"); ?>
-    <?php $prikaziFormu = true; ?>
-        
-    <!-- Sve je ispravno -->
-    <?php if( !isset($_POST['hidden']) && isset($_POST['ime']) && isset($_POST['email']) && isset($_POST['telefon']) && isset($_POST['message']) && validacijaIme($_POST['ime']) && validacijaEmail($_POST['email']) && validacijaTelefon($_POST['telefon']) && validacijaPoruka($_POST['message'])) : ?>
     
-    <?php 
+    <!-- Sve je ispravno -->
+    <?php if(isset($_POST['ime']) && isset($_POST['email']) && isset($_POST['telefon']) && isset($_POST['message']) && validacijaIme($_POST['ime']) && validacijaEmail($_POST['email']) && validacijaTelefon($_POST['telefon']) && validacijaPoruka($_POST['message'])) : ?>
+      <?php 
         echo "<div class='poslano'>Provjerite da li ste ispravno popunili kontakt formu!<br/><br/>";
         echo "Uneseni podaci: <br/>";
         echo '<table class=\'poslanotabela\'><tr><td>Ime: </td><td class="desno">'.$_POST['ime'].'</td>';
         echo '<tr><td>Email: </td><td class="desno">'.$_POST['email'].'</td>';
         echo '<tr><td>Telefon: </td><td class="desno">'.$_POST['telefon'].'</td>';
         echo '<tr><td>Poruka: </td><td class="desno">'.$_POST['message'].'</td>';
-        echo '<tr><td>Godina: </td><td class="desno">'.$_POST['quantity'].'</td>';
-        echo '<tr><td>Hitnost: </td><td class="desno">'.$_POST['points'].'</td></table></div>';
     ?>
-        <form class="kontakt-forma" action='ispravankontakt.php' method="POST">
-            <input class="send" type="submit" value="Siguran sam">
-            <input type="hidden" value="Da" name="sakriven">
-            <input type="hidden" value="<?php echo $_POST['ime']?>" name="ime2">
-            <input type="hidden" value="<?php echo $_POST['email']?>" name="email2">
-            <input type="hidden" value="<?php echo $_POST['telefon']?>" name="telefon2">
-            <input type="hidden" value="<?php echo $_POST['message']?>" name="porukasubmit2">
-            <input type="hidden" value="<?php echo $_POST['quantity']?>" name="godina2">
-            <input type="hidden" value="<?php echo $_POST['points']?>" name="hitno2">
-        </form>
-        <?php echo "<br/><br/><div class='poslano'>Ako ste pogrešno popunili formu, možete ispod prepraviti unesene podatke<br/><div>"; ?>
-        
-<?php endif; ?>
-        
-        <?php 
-        if(isset($_POST['sakriven']) && $_POST['sakriven']=="Da")
-                { 
-                    $ime =  $_POST['ime2'];
-                    $emailsubm =  $_POST['email2'];
-                    $telefon =  $_POST['telefon2'];
-                    $porukasubmit =  $_POST['porukasubmit2'];
-                    $hitno = $_POST['hitno2'];
-                    $godina = $_POST['godina2'];
+        <?php echo "<tr><td>";?>
+            <input class="send" type="submit" value="Pošalji poruku" onclick="ajaxpostporuke('<?php echo $_POST['ime']?>','<?php echo $_POST['email']?>','<?php echo $_POST['telefon']?>','<?php echo $_POST['message']?>',0)" >
+        <?php echo "</td></tr></table>";?>
+    
+        <?php else: ?>
+		<form class="kontakt-forma" action='ispravankontakt.php' method="POST" onSubmit="return validate();">
             
-                    ini_set("SMTP","webmail.etf.unsa.ba");
-                    ini_set("smtp_port","25");
-                    ini_set('sendmail_from','egazetic1@etf.unsa.ba');
-            
-                    $from = "egazetic1@etf.unsa.ba";
-                    $cc = "vljubovic1@etf.unsa.ba";	
-                    $subject = "Zubarska ordinacija Apple";
-	
-                    $header = "From: ".$from."\r\n"."Cc: ".$cc."\r\n"."Subject: ".$subject."\r\n"."Content-Type: text/html; charset=\"UTF-8\""."\r\n";
-                    $porukasubmit = 'Ime: '.$ime.' Email: '.$emailsubm.' Telefon: '.$telefon.' Poruka '.$porukasubmit.' Godina: '.$godina.' Hitnost '.$hitno;
-
-                    $dodatno = "CC: " . $cc . "\r\n" . "Reply-To: " . $emailsubm;
-                    $poslanMail = mail($emailsubm, $subject, $porukasubmit, $dodatno);
-                    if($poslanMail == 1) 
-                           echo "<div class='poslano'>Zahvaljujemo vam što ste nas kontaktirali.</div>";
-            
-                    $prikaziFormu = false;
-                }
-        ?>
-        
-    <?php if($prikaziFormu): ?>
-        
-            <form class="kontakt-forma" action='ispravankontakt.php' method="POST" onSubmit="return validate();">
-           
             <!-- Ime i prezime -->
-                <label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label>
-                <?php if(isset($_POST['ime'])) { if(validacijaIme($_POST['ime'])) { echo '<div class="prikazime2"></div>'; } else { echo '<div class="prikazime1"></div>';} } elseif(empty($_POST['ime'])){ echo '<div class="prikazime1"></div>';}  ?>
-                <div class="greskaime"><?php if(isset($_POST['ime'])) { if(validacijaIme($_POST['ime'])) { echo ""; } else { echo 'Greska';} }  ?> </div>
-                
+			<label class="zvjezdica">*&nbsp;</label><label>Ime i prezime:&nbsp;</label><div class="prikazime"></div>
+            
 			<input class="name" type="text" name="ime" value="<?php if(isset($_POST['ime'])) echo $_POST['ime']; else echo ""; ?>"><br><br>
+                <div class="greskaime"><?php if(isset($_POST['ime'])) { if(validacijaIme($_POST['ime'])) { echo ""; } else { echo "greska";} }  ?> </div>
             <br>
             
             <!-- Email -->
-			<label class="zvjezdica">*&nbsp;</label><label>Email:&nbsp;</label>
-                <?php if(isset($_POST['email'])) { if(validacijaEmail($_POST['email'])) { echo '<div class="prikazemail2"></div>'; } else { echo '<div class="prikazemail1"></div>';} }  elseif(empty($_POST['email'])){ echo '<div class="prikazemail1"></div>';}  ?>
-            <div class="greskaemail"><?php if(isset($_POST['email'])) { if(validacijaEmail($_POST['email'])) { echo ""; } else { echo "Greska";} }  ?></div>
-			<input class="email" type="email" onChange="enableUnosPoruke()" name="email" value="<?php if(isset($_REQUEST['email'])) echo $_REQUEST['email']; else echo ""; ?>" novalidate><br><br>	
+			<label class="zvjezdica">*&nbsp;</label><label>Email:&nbsp;</label><div class="prikazemail"></div>
+			<input class="email" type="text"  name="email" value="<?php if(isset($_REQUEST['email'])) echo $_REQUEST['email']; else echo ""; ?>"><br><br>
+            <div class="greskaemail"><?php if(isset($_POST['email'])) { if(validacijaEmail($_POST['email'])) { echo ""; } else { echo "greska";} }  ?></div>	
             <br>
             
             <!-- Telefon -->
-            <label class="zvjezdica">*&nbsp;</label><label>Telefon:&nbsp;</label>
-                 <?php if(isset($_POST['telefon'])) { if(validacijaTelefon($_POST['telefon'])) { echo '<div class="prikaztelefon2"></div>'; } else { echo '<div class="prikaztelefon1"></div>';} } else if(empty($_POST['telefon'])){ echo '<div class="prikaztelefon1"></div>';}  ?>
-            <div class="greskatelefon"><?php if(isset($_POST['telefon'])) { if(validacijaTelefon($_POST['telefon'])) { echo ""; } else { echo "Greska";} }  ?></div>
+            <label class="zvjezdica">*&nbsp;</label><label>Telefon:&nbsp;</label><div class="prikaztelefon"></div>
             <input class="telefon" type="text" name="telefon" value="<?php if(isset($_REQUEST['telefon'])) echo $_REQUEST['telefon']; else echo ""; ?>"><br><br>
-            <br>
-            
-            <!-- Godiste -->
-            <label>Godiste:</label><br>
-            <input type="number" name="quantity" min="1960" max="2000" class="godiste" value="<?php if(isset($_REQUEST['quantity'])) echo $_REQUEST['quantity']; else echo ""; ?>" ><br>
-            <br>
-            
-            <!-- Hitno -->
-            <label>Hitno:</label><br>
-            <input type="range" name="points" min="0" max="10" value="<?php if(isset($_REQUEST['points'])) echo $_REQUEST['points']; else echo ""; ?>" ><br>
+            <div class="greskatelefon"><?php if(isset($_POST['telefon'])) { if(validacijaTelefon($_POST['telefon'])) { echo ""; } else { echo "greska";} }  ?></div>
             <br>
             
             <!-- Poruka -->
-			<label class="zvjezdica">*&nbsp;</label><label>Poruka:&nbsp;</label>
-                 <?php if(isset($_POST['message'])) { if(validacijaIme($_POST['message'])) { echo '<div class="prikazporuka2"></div>'; } else { echo '<div class="prikazporuka1"></div>';} } elseif(empty($_POST['message'])){ echo '<div class="prikazporuka1"></div>';}  ?>
-                
-            <div class="greskaporuka"><?php if(isset($_POST['message'])) { if(validacijaPoruka($_POST['message'])) { echo ""; } else { echo "Greska";} } ?></div>
-            <textarea class="message"  name="message" > <?php if(isset($_REQUEST['message'])) echo $_REQUEST['message']; else echo ""; ?> </textarea><br>
+			<label class="zvjezdica">*&nbsp;</label><label>Poruka:&nbsp;</label><div class="prikazporuka"></div>
+            <textarea class="message"  name="message"> <?php if(isset($_REQUEST['message'])) echo $_REQUEST['message']; else echo ""; ?> </textarea><br>
+            <div class="greskaporuka"><?php if(isset($_POST['message'])) { if(validacijaPoruka($_POST['message'])) { echo ""; } else { echo "greska";} } ?></div>
             <br>
             <br>
-             
-			<input class="send" type="reset" value="Resetuj">
+            
 			<input class="send" type="submit" value="Pošalji">
              <div><label class="zvjezdica">*&nbsp;</label> ~ Obavezno polje za popunjavanje.</div>
 		</form>
-        <?php endif; ?>
+         <?php endif; ?>
     </div>
+     <script src="js/opadajucimeni.js"></script>
+    <script src="js/pomjeriscroll.js"></script>
+    <script src="js/otvoristranicuajax.js"></script>
+    <script src="js/kontaktvalidacija.js"></script>
+    <script src="js/ajax_komentar.js"></script>
+    <script src="js/ajax_korisnik.js"></script>
+    <script src="js/ajax_vijesti.js"></script>
+    <script src="js/ajax_poruke.js"></script>
+    <script src="js/kontakt.js"></script>
 </body>
 </html>
